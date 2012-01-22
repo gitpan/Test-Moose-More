@@ -2,7 +2,7 @@ NAME
     Test::Moose::More - More tools for testing Moose packages
 
 VERSION
-    version 0.001
+    version 0.002
 
 SYNOPSIS
         use Test::Moose::More;
@@ -18,7 +18,7 @@ DESCRIPTION
     against Moose classes/roles. It is intended to coexist with Test::Moose,
     though it does not (currently) require it.
 
-TEST_FUNCTIONS
+TESTS
   has_method_ok $thing, @methods
     Queries $thing's metaclass to see if $thing has the methods named in
     @methods.
@@ -28,6 +28,19 @@ TEST_FUNCTIONS
 
   is_class $thing
     Passes if $thing's metaclass isa Moose::Meta::Class.
+
+  check_sugar_removed_ok $thing
+    Ensures that all the standard Moose sugar is no longer directly callable
+    on a given package.
+
+  check_sugar_ok $thing
+    Checks and makes sure a class/etc can still do all the standard Moose
+    sugar.
+
+FUNCTIONS
+  known_sugar
+    Returns a list of all the known standard Moose sugar (has, extends,
+    etc).
 
 SEE ALSO
     Test::Moose

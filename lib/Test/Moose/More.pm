@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.001';
+  $Test::Moose::More::VERSION = '0.002';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -18,7 +18,10 @@ use strict;
 use warnings;
 
 use Sub::Exporter -setup => {
-    exports => [ qw{ has_method_ok is_role is_class } ],
+    exports => [ qw{
+        has_method_ok is_role is_class
+        check_sugar_ok check_sugar_removed_ok
+    } ],
     groups  => { default => [ ':all' ] },
 };
 use Test::Builder;
@@ -60,6 +63,30 @@ sub _is_moosey {
     return;
 }
 
+
+sub known_sugar { qw{ has around augment inner before after blessed confess } }
+
+sub check_sugar_removed_ok {
+    my $t = shift @_;
+
+    # check some (not all) Moose sugar to make sure it has been cleared
+    #my @sugar = qw{ has around augment inner before after blessed confess };
+    $tb->ok(!$t->can($_) => "$t cannot $_") for known_sugar;
+
+    return;
+}
+
+
+sub check_sugar_ok {
+    my $t = shift @_;
+
+    # check some (not all) Moose sugar to make sure it has been cleared
+    #my @sugar = qw{ has around augment inner before after blessed confess };
+    $tb->ok($t->can($_) => "$t can $_") for known_sugar;
+
+    return;
+}
+
 !!42;
 
 
@@ -72,7 +99,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -90,7 +117,7 @@ This package contains a number of additional tests that can be employed
 against Moose classes/roles.  It is intended to coexist with L<Test::Moose>,
 though it does not (currently) require it.
 
-=head1 TEST_FUNCTIONS
+=head1 TESTS
 
 =head2 has_method_ok $thing, @methods
 
@@ -103,6 +130,21 @@ Passes if $thing's metaclass isa L<Moose::Meta::Role>.
 =head2 is_class $thing
 
 Passes if $thing's metaclass isa L<Moose::Meta::Class>.
+
+=head2 check_sugar_removed_ok $thing
+
+Ensures that all the standard Moose sugar is no longer directly callable on a
+given package.
+
+=head2 check_sugar_ok $thing
+
+Checks and makes sure a class/etc can still do all the standard Moose sugar.
+
+=head1 FUNCTIONS
+
+=head2 known_sugar
+
+Returns a list of all the known standard Moose sugar (has, extends, etc).
 
 =head1 SEE ALSO
 

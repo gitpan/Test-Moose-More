@@ -46,13 +46,14 @@
       "bugtracker" : {
          "web" : "https://github.com/RsrchBoy/test-moose-more/issues"
       },
+      "homepage" : "http://metacpan.org/release/Test-Moose-More/",
       "repository" : {
          "type" : "git",
          "url" : "git://github.com/RsrchBoy/test-moose-more.git",
          "web" : "https://github.com/RsrchBoy/test-moose-more"
       }
    },
-   "version" : "0.001",
+   "version" : "0.002",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
