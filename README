@@ -2,7 +2,7 @@ NAME
     Test::Moose::More - More tools for testing Moose packages
 
 VERSION
-    version 0.002
+    version 0.003
 
 SYNOPSIS
         use Test::Moose::More;
@@ -37,22 +37,53 @@ TESTS
     Checks and makes sure a class/etc can still do all the standard Moose
     sugar.
 
+  validate_class
+    validate_class {
+
+        attributes => [ ... ],
+        methods    => [ ... ],
+        isa        => [ ... ],
+        does       => [ ... ],
+
+        requires_methods => [ ... ],
+
+        meta => {
+            class => {
+                ...as above
+            },
+            attribute ... etc
+        },
+    };
+
+  validate_role
+    The same as validate_class(), but for roles.
+
+  validate_thing
+    The same as validate_class() and validate_role(), except without the
+    class or role validation.
+
 FUNCTIONS
   known_sugar
     Returns a list of all the known standard Moose sugar (has, extends,
     etc).
 
 SEE ALSO
-    Test::Moose
+    Please see those modules/websites for more information related to this
+    module.
+
+    *   Test::Moose
+
+SOURCE
+    The development version is on github at
+    <http://github.com/RsrchBoy/test-moose-more> and may be cloned from
+    <git://github.com/RsrchBoy/test-moose-more.git>
 
 BUGS
-    All complex software has bugs lurking in it, and this module is no
-    exception.
+    Please report any bugs or feature requests on the bugtracker website
+    https://github.com/RsrchBoy/test-moose-more/issues
 
-    Bugs, feature requests and pull requests through GitHub are most
-    welcome; our page and repo (same URI):
-
-        https://github.com/RsrchBoy/test-moose-more
+    When submitting a bug or request, please include a test-file or a patch
+    to an existing test-file that illustrates the bug or desired feature.
 
 AUTHOR
     Chris Weyl <cweyl@alumni.drew.edu>

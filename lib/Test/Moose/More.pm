@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.002';
+  $Test::Moose::More::VERSION = '0.003';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -21,11 +21,13 @@ use Sub::Exporter -setup => {
     exports => [ qw{
         has_method_ok is_role is_class
         check_sugar_ok check_sugar_removed_ok
+        validate_class validate_role
     } ],
     groups  => { default => [ ':all' ] },
 };
 use Test::Builder;
 use Test::More;
+use Test::Moose;
 use Moose::Util 'does_role', 'find_meta';
 
 # debugging...
@@ -59,8 +61,7 @@ sub _is_moosey {
     $tb->ok(!!$meta, "$thing_name has a metaclass");
     return unless !!$meta;
 
-    $tb->ok($meta->isa("Moose::Meta::$type"), "$thing_name is a Moose " . lc $type);
-    return;
+    return $tb->ok($meta->isa("Moose::Meta::$type"), "$thing_name is a Moose " . lc $type);
 }
 
 
@@ -87,6 +88,39 @@ sub check_sugar_ok {
     return;
 }
 
+
+
+sub validate_thing {
+    my ($class, %args) = @_;
+
+    local $Test::Builder::Level = $Test::Builder::Level + 1;
+    do { does_ok($class, $_) for @{$args{does}} }
+        if exists $args{does};
+
+    do { has_method_ok($class, $_) for @{$args{methods}} }
+        if exists $args{methods};
+
+    return;
+}
+
+sub validate_class {
+    my ($class, @args) = @_;
+
+    local $Test::Builder::Level = $Test::Builder::Level + 1;
+    return unless is_class $class;
+
+    return validate_thing $class => @args;
+}
+
+sub validate_role {
+    my ($class, @args) = @_;
+
+    local $Test::Builder::Level = $Test::Builder::Level + 1;
+    return unless is_role $class;
+
+    return validate_thing $class => @args;
+}
+
 !!42;
 
 
@@ -99,7 +133,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
@@ -140,6 +174,34 @@ given package.
 
 Checks and makes sure a class/etc can still do all the standard Moose sugar.
 
+=head2 validate_class
+
+validate_class {
+
+    attributes => [ ... ],
+    methods    => [ ... ],
+    isa        => [ ... ],
+    does       => [ ... ],
+
+    requires_methods => [ ... ],
+
+    meta => {
+        class => {
+            ...as above
+        },
+        attribute ... etc
+    },
+};
+
+=head2 validate_role
+
+The same as validate_class(), but for roles.
+
+=head2 validate_thing
+
+The same as validate_class() and validate_role(), except without the class or
+role validation.
+
 =head1 FUNCTIONS
 
 =head2 known_sugar
@@ -148,16 +210,29 @@ Returns a list of all the known standard Moose sugar (has, extends, etc).
 
 =head1 SEE ALSO
 
+Please see those modules/websites for more information related to this module.
+
+=over 4
+
+=item *
+
 L<Test::Moose>
+
+=back
+
+=head1 SOURCE
+
+The development version is on github at L<http://github.com/RsrchBoy/test-moose-more>
+and may be cloned from L<git://github.com/RsrchBoy/test-moose-more.git>
 
 =head1 BUGS
 
-All complex software has bugs lurking in it, and this module is no exception.
+Please report any bugs or feature requests on the bugtracker website
+https://github.com/RsrchBoy/test-moose-more/issues
 
-Bugs, feature requests and pull requests through GitHub are most welcome; our
-page and repo (same URI):
-
-    https://github.com/RsrchBoy/test-moose-more
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
 
 =head1 AUTHOR
 
@@ -175,5 +250,4 @@ This is free software, licensed under:
 
 
 __END__
-
 

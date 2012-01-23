@@ -22,4 +22,5 @@ t/release-no-tabs.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
 t/release-portability.t
+t/validate_class.t
 weaver.ini
