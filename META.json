@@ -22,9 +22,9 @@
       "runtime" : {
          "requires" : {
             "Moose::Util" : 0,
+            "Scalar::Util" : 0,
             "Sub::Exporter" : 0,
             "Test::Builder" : 0,
-            "Test::Moose" : 0,
             "Test::More" : 0,
             "perl" : "5.006",
             "strict" : 0,
@@ -55,7 +55,7 @@
          "web" : "https://github.com/RsrchBoy/test-moose-more"
       }
    },
-   "version" : "0.003",
+   "version" : "0.004",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
@@ -261,7 +261,7 @@
          {
             "class" : "Dist::Zilla::Plugin::ReadmeAnyFromPod",
             "name" : "@RSRCHBOY/ReadmePodInRoot",
-            "version" : "0.120052"
+            "version" : "0.120120"
          },
          {
             "class" : "Dist::Zilla::Plugin::ArchiveRelease",

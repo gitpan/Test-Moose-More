@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.003';
+  $Test::Moose::More::VERSION = '0.004';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -22,18 +22,60 @@ use Sub::Exporter -setup => {
         has_method_ok is_role is_class
         check_sugar_ok check_sugar_removed_ok
         validate_class validate_role
+        meta_ok does_ok
     } ],
     groups  => { default => [ ':all' ] },
 };
+
 use Test::Builder;
 use Test::More;
-use Test::Moose;
+use Scalar::Util 'blessed';
 use Moose::Util 'does_role', 'find_meta';
 
 # debugging...
 #use Smart::Comments;
 
 my $tb = Test::Builder->new();
+
+sub _thing_name {
+    my ($thing, $thing_meta) = @_;
+    $thing_meta ||= find_meta($thing);
+
+    # try very hard to come up with a meaningful name
+    my $desc
+        = !!$thing_meta  ? $thing_meta->name
+        : blessed $thing ? ref $thing
+        : ref $thing     ? 'The object'
+        :                  $thing
+        ;
+
+    return $desc;
+}
+
+
+sub meta_ok ($;$) {
+    my ($thing, $message) = @_;
+
+    my $thing_meta = find_meta($thing);
+    $message ||= _thing_name($thing, $thing_meta) . ' has a meta';
+
+    return $tb->ok(!!$thing_meta, $message);
+}
+
+
+sub does_ok {
+    my ($thing, $roles, $message) = @_;
+
+    my $thing_meta = find_meta($thing);
+
+    $roles     = [ $roles ] unless ref $roles;
+    $message ||= _thing_name($thing, $thing_meta) . ' does %s';
+
+    $tb->ok(!!$thing_meta->does_role($_), sprintf($message, $_))
+        for @$roles;
+
+    return;
+}
 
 
 sub has_method_ok {
@@ -127,13 +169,15 @@ sub validate_role {
 
 =pod
 
+=encoding utf-8
+
 =head1 NAME
 
 Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -151,7 +195,26 @@ This package contains a number of additional tests that can be employed
 against Moose classes/roles.  It is intended to coexist with L<Test::Moose>,
 though it does not (currently) require it.
 
-=head1 TESTS
+=head1 FUNCTIONS
+
+=head2 known_sugar
+
+Returns a list of all the known standard Moose sugar (has, extends, etc).
+
+=head1 TEST_FUNCTIONS
+
+=head2 meta_ok $thing
+
+Tests $thing to see if it has a metaclass; $thing may be the class name or
+instance of the class you wish to check.
+
+=head2 does_ok $thing, < $role | \@roles >, [ $message ]
+
+Checks to see if $thing does the given roles.  $thing may be the class name or
+instance of the class you wish to check.
+
+Note that the message will be taken verbatim unless it contains C<%s>
+somewhere; this will be replaced with the name of the role being tested for.
 
 =head2 has_method_ok $thing, @methods
 
@@ -201,12 +264,6 @@ The same as validate_class(), but for roles.
 
 The same as validate_class() and validate_role(), except without the class or
 role validation.
-
-=head1 FUNCTIONS
-
-=head2 known_sugar
-
-Returns a list of all the known standard Moose sugar (has, extends, etc).
 
 =head1 SEE ALSO
 
