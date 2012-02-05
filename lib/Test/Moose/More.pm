@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.004';
+  $Test::Moose::More::VERSION = '0.005';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -23,12 +23,14 @@ use Sub::Exporter -setup => {
         check_sugar_ok check_sugar_removed_ok
         validate_class validate_role
         meta_ok does_ok
+        with_immutable
     } ],
     groups  => { default => [ ':all' ] },
 };
 
 use Test::Builder;
 use Test::More;
+use Test::Moose 'with_immutable';
 use Scalar::Util 'blessed';
 use Moose::Util 'does_role', 'find_meta';
 
@@ -177,7 +179,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
@@ -192,8 +194,7 @@ version 0.004
 =head1 DESCRIPTION
 
 This package contains a number of additional tests that can be employed
-against Moose classes/roles.  It is intended to coexist with L<Test::Moose>,
-though it does not (currently) require it.
+against Moose classes/roles.  It is intended to replace L<Test::Moose>.
 
 =head1 FUNCTIONS
 

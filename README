@@ -2,7 +2,7 @@ NAME
     Test::Moose::More - More tools for testing Moose packages
 
 VERSION
-    version 0.004
+    version 0.005
 
 SYNOPSIS
         use Test::Moose::More;
@@ -15,8 +15,7 @@ SYNOPSIS
 
 DESCRIPTION
     This package contains a number of additional tests that can be employed
-    against Moose classes/roles. It is intended to coexist with Test::Moose,
-    though it does not (currently) require it.
+    against Moose classes/roles. It is intended to replace Test::Moose.
 
 FUNCTIONS
   known_sugar
