@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.005';
+  $Test::Moose::More::VERSION = '0.006';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -24,13 +24,14 @@ use Sub::Exporter -setup => {
         validate_class validate_role
         meta_ok does_ok
         with_immutable
+        has_attribute_ok
     } ],
     groups  => { default => [ ':all' ] },
 };
 
 use Test::Builder;
 use Test::More;
-use Test::Moose 'with_immutable';
+use Test::Moose 'with_immutable', 'has_attribute_ok';
 use Scalar::Util 'blessed';
 use Moose::Util 'does_role', 'find_meta';
 
@@ -144,25 +145,31 @@ sub validate_thing {
     do { has_method_ok($class, $_) for @{$args{methods}} }
         if exists $args{methods};
 
+    do { has_attribute_ok($class, $_) for @{$args{attributes}} }
+        if exists $args{attributes};
+
     return;
 }
 
 sub validate_class {
-    my ($class, @args) = @_;
+    my ($class, %args) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
     return unless is_class $class;
 
-    return validate_thing $class => @args;
+    do { isa_ok($class, $_) for @{$args{isa}} }
+        if exists $args{isa};
+
+    return validate_thing $class => %args;
 }
 
 sub validate_role {
-    my ($class, @args) = @_;
+    my ($class, %args) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
     return unless is_role $class;
 
-    return validate_thing $class => @args;
+    return validate_thing $class => %args;
 }
 
 !!42;
@@ -179,7 +186,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-version 0.005
+This document describes version 0.006 of Test::Moose::More - released April 07, 2012 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -223,11 +230,11 @@ Queries $thing's metaclass to see if $thing has the methods named in @methods.
 
 =head2 is_role $thing
 
-Passes if $thing's metaclass isa L<Moose::Meta::Role>.
+Passes if $thing's metaclass is a L<Moose::Meta::Role>.
 
 =head2 is_class $thing
 
-Passes if $thing's metaclass isa L<Moose::Meta::Class>.
+Passes if $thing's metaclass is a L<Moose::Meta::Class>.
 
 =head2 check_sugar_removed_ok $thing
 
@@ -240,22 +247,14 @@ Checks and makes sure a class/etc can still do all the standard Moose sugar.
 
 =head2 validate_class
 
-validate_class {
+validate_class 'Some::Class' => (
 
     attributes => [ ... ],
     methods    => [ ... ],
     isa        => [ ... ],
     does       => [ ... ],
 
-    requires_methods => [ ... ],
-
-    meta => {
-        class => {
-            ...as above
-        },
-        attribute ... etc
-    },
-};
+);
 
 =head2 validate_role
 

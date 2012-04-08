@@ -10,6 +10,7 @@ dist.ini
 lib/Test/Moose/More.pm
 t/00-compile.t
 t/000-report-versions-tiny.t
+t/author-pod-spell.t
 t/check_sugar.t
 t/does_ok.t
 t/funcs.pm
@@ -26,4 +27,3 @@ t/release-pod-coverage.t
 t/release-pod-syntax.t
 t/release-portability.t
 t/validate_class.t
-weaver.ini
