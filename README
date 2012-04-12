@@ -2,8 +2,8 @@ NAME
     Test::Moose::More - More tools for testing Moose packages
 
 VERSION
-    This document describes version 0.006 of Test::Moose::More - released
-    April 07, 2012 as part of Test-Moose-More.
+    This document describes version 0.007 of Test::Moose::More - released
+    April 11, 2012 as part of Test-Moose-More.
 
 SYNOPSIS
         use Test::Moose::More;
@@ -36,6 +36,14 @@ TEST_FUNCTIONS
     somewhere; this will be replaced with the name of the role being tested
     for.
 
+  does_not_ok $thing, < $role | \@roles >, [ $message ]
+    Checks to see if $thing does not do the given roles. $thing may be the
+    class name or instance of the class you wish to check.
+
+    Note that the message will be taken verbatim unless it contains %s
+    somewhere; this will be replaced with the name of the role being tested
+    for.
+
   has_method_ok $thing, @methods
     Queries $thing's metaclass to see if $thing has the methods named in
     @methods.
@@ -60,8 +68,12 @@ TEST_FUNCTIONS
         attributes => [ ... ],
         methods    => [ ... ],
         isa        => [ ... ],
+
+        # ensures class does these roles
         does       => [ ... ],
 
+        # ensures class does not do these roles
+        does_not   => [ ... ],
     );
 
   validate_role

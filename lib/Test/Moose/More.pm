@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.006';
+  $Test::Moose::More::VERSION = '0.007';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -22,7 +22,7 @@ use Sub::Exporter -setup => {
         has_method_ok is_role is_class
         check_sugar_ok check_sugar_removed_ok
         validate_class validate_role
-        meta_ok does_ok
+        meta_ok does_ok does_not_ok
         with_immutable
         has_attribute_ok
     } ],
@@ -75,6 +75,21 @@ sub does_ok {
     $message ||= _thing_name($thing, $thing_meta) . ' does %s';
 
     $tb->ok(!!$thing_meta->does_role($_), sprintf($message, $_))
+        for @$roles;
+
+    return;
+}
+
+
+sub does_not_ok {
+    my ($thing, $roles, $message) = @_;
+
+    my $thing_meta = find_meta($thing);
+
+    $roles     = [ $roles ] unless ref $roles;
+    $message ||= _thing_name($thing, $thing_meta) . ' does not do %s';
+
+    $tb->ok(!$thing_meta->does_role($_), sprintf($message, $_))
         for @$roles;
 
     return;
@@ -139,12 +154,18 @@ sub validate_thing {
     my ($class, %args) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
+
+    ### roles...
     do { does_ok($class, $_) for @{$args{does}} }
         if exists $args{does};
+    do { does_not_ok($class, $_) for @{$args{does_not}} }
+        if exists $args{does_not};
 
+    ### methods...
     do { has_method_ok($class, $_) for @{$args{methods}} }
         if exists $args{methods};
 
+    ### attributes...
     do { has_attribute_ok($class, $_) for @{$args{attributes}} }
         if exists $args{attributes};
 
@@ -186,7 +207,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.006 of Test::Moose::More - released April 07, 2012 as part of Test-Moose-More.
+This document describes version 0.007 of Test::Moose::More - released April 11, 2012 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -224,6 +245,14 @@ instance of the class you wish to check.
 Note that the message will be taken verbatim unless it contains C<%s>
 somewhere; this will be replaced with the name of the role being tested for.
 
+=head2 does_not_ok $thing, < $role | \@roles >, [ $message ]
+
+Checks to see if $thing does not do the given roles.  $thing may be the class
+name or instance of the class you wish to check.
+
+Note that the message will be taken verbatim unless it contains C<%s>
+somewhere; this will be replaced with the name of the role being tested for.
+
 =head2 has_method_ok $thing, @methods
 
 Queries $thing's metaclass to see if $thing has the methods named in @methods.
@@ -252,8 +281,12 @@ validate_class 'Some::Class' => (
     attributes => [ ... ],
     methods    => [ ... ],
     isa        => [ ... ],
+
+    # ensures class does these roles
     does       => [ ... ],
 
+    # ensures class does not do these roles
+    does_not   => [ ... ],
 );
 
 =head2 validate_role

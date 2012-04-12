@@ -12,6 +12,7 @@ t/00-compile.t
 t/000-report-versions-tiny.t
 t/author-pod-spell.t
 t/check_sugar.t
+t/does_not_ok.t
 t/does_ok.t
 t/funcs.pm
 t/has_method_ok.t
