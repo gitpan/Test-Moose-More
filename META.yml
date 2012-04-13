@@ -34,7 +34,7 @@ resources:
   bugtracker: https://github.com/RsrchBoy/test-moose-more/issues
   homepage: http://metacpan.org/release/Test-Moose-More/
   repository: git://github.com/RsrchBoy/test-moose-more.git
-version: 0.007
+version: 0.008
 x_Dist_Zilla:
   plugins:
     -

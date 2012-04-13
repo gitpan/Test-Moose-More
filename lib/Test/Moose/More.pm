@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.007';
+  $Test::Moose::More::VERSION = '0.008';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -31,7 +31,7 @@ use Sub::Exporter -setup => {
 
 use Test::Builder;
 use Test::More;
-use Test::Moose 'with_immutable', 'has_attribute_ok';
+use Test::Moose 'with_immutable';
 use Scalar::Util 'blessed';
 use Moose::Util 'does_role', 'find_meta';
 
@@ -93,6 +93,23 @@ sub does_not_ok {
         for @$roles;
 
     return;
+}
+
+
+sub has_attribute_ok ($$;$) {
+    my ($thing, $attr_name, $message) = @_;
+
+    my $meta       = find_meta($thing);
+    my $thing_name = $meta->name;
+    $message     ||= "$thing_name has an attribute named $attr_name";
+
+    return $tb->ok(($meta->has_attribute($attr_name) ? 1 : 0), $message)
+        if $meta->isa('Moose::Meta::Role');
+
+    return $tb->ok(1, $message)
+        if $meta->find_attribute_by_name($attr_name);
+
+    return $tb->ok(0, $message);
 }
 
 
@@ -207,7 +224,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.007 of Test::Moose::More - released April 11, 2012 as part of Test-Moose-More.
+This document describes version 0.008 of Test::Moose::More - released April 13, 2012 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -222,7 +239,8 @@ This document describes version 0.007 of Test::Moose::More - released April 11, 
 =head1 DESCRIPTION
 
 This package contains a number of additional tests that can be employed
-against Moose classes/roles.  It is intended to replace L<Test::Moose>.
+against Moose classes/roles.  It is intended to replace L<Test::Moose> in your
+tests, and reexports any tests that it has and we do not, yet.
 
 =head1 FUNCTIONS
 
@@ -252,6 +270,11 @@ name or instance of the class you wish to check.
 
 Note that the message will be taken verbatim unless it contains C<%s>
 somewhere; this will be replaced with the name of the role being tested for.
+
+=head2 has_attribute_ok $thing, $attribute_name, [ $message ]
+
+Checks C<$thing> for an attribute named C<$attribute_name>; C<$thing> may be a
+class name, instance, or role name.
 
 =head2 has_method_ok $thing, @methods
 
