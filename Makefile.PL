@@ -18,8 +18,7 @@ my %WriteMakefileArgs = (
     "Moose::Role" => 0,
     "MooseX::AttributeShortcuts" => 0,
     "Test::Builder::Tester" => 0,
-    "Test::More" => "0.88",
-    "Test::Requires" => 0
+    "Test::More" => "0.88"
   },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
@@ -29,6 +28,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "lgpl",
   "NAME" => "Test::Moose::More",
   "PREREQ_PM" => {
+    "Data::OptList" => 0,
     "Moose::Util" => 0,
     "Scalar::Util" => 0,
     "Sub::Exporter" => 0,
@@ -38,7 +38,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.008",
+  "VERSION" => "0.009",
   "test" => {
     "TESTS" => "t/*.t"
   }

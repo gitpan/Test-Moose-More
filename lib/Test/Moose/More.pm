@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.008';
+  $Test::Moose::More::VERSION = '0.009';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -34,14 +34,20 @@ use Test::More;
 use Test::Moose 'with_immutable';
 use Scalar::Util 'blessed';
 use Moose::Util 'does_role', 'find_meta';
+use Data::OptList;
 
 # debugging...
 #use Smart::Comments;
 
 my $tb = Test::Builder->new();
 
+our $THING_NAME;
+
 sub _thing_name {
     my ($thing, $thing_meta) = @_;
+
+    return $THING_NAME if $THING_NAME;
+
     $thing_meta ||= find_meta($thing);
 
     # try very hard to come up with a meaningful name
@@ -148,7 +154,6 @@ sub check_sugar_removed_ok {
     my $t = shift @_;
 
     # check some (not all) Moose sugar to make sure it has been cleared
-    #my @sugar = qw{ has around augment inner before after blessed confess };
     $tb->ok(!$t->can($_) => "$t cannot $_") for known_sugar;
 
     return;
@@ -159,7 +164,6 @@ sub check_sugar_ok {
     my $t = shift @_;
 
     # check some (not all) Moose sugar to make sure it has been cleared
-    #my @sugar = qw{ has around augment inner before after blessed confess };
     $tb->ok($t->can($_) => "$t can $_") for known_sugar;
 
     return;
@@ -183,8 +187,14 @@ sub validate_thing {
         if exists $args{methods};
 
     ### attributes...
-    do { has_attribute_ok($class, $_) for @{$args{attributes}} }
-        if exists $args{attributes};
+    for my $attribute (@{Data::OptList::mkopt($args{attributes} || [])}) {
+
+        my ($name, $opts) = @$attribute;
+        has_attribute_ok($class, $name);
+        local $THING_NAME = "${class}'s attribute $name";
+        validate_thing(find_meta($class)->get_attribute($name), %$opts)
+            if $opts;
+    }
 
     return;
 }
@@ -224,7 +234,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.008 of Test::Moose::More - released April 13, 2012 as part of Test-Moose-More.
+This document describes version 0.009 of Test::Moose::More - released April 26, 2012 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
