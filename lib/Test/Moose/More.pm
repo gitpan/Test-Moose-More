@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.009';
+  $Test::Moose::More::VERSION = '0.010';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -19,7 +19,9 @@ use warnings;
 
 use Sub::Exporter -setup => {
     exports => [ qw{
-        has_method_ok is_role is_class
+        is_role is_class
+        has_method_ok
+        requires_method_ok
         check_sugar_ok check_sugar_removed_ok
         validate_class validate_role
         meta_ok does_ok does_not_ok
@@ -127,7 +129,24 @@ sub has_method_ok {
     my $name = $meta->name;
 
     ### @methods
-    $tb->ok(!!$meta->has_method($_), "$name has method $_") for @methods;
+    $tb->ok(!!$meta->has_method($_), "$name has method $_")
+        for @methods;
+
+    return;
+}
+
+
+sub requires_method_ok {
+    my ($thing, @methods) = @_;
+
+    ### $thing
+    my $meta = find_meta($thing);
+    my $name = $meta->name;
+
+    ### @methods
+    $tb->ok(!!$meta->requires_method($_), "$name requires method $_")
+        for @methods;
+
     return;
 }
 
@@ -172,28 +191,37 @@ sub check_sugar_ok {
 
 
 sub validate_thing {
-    my ($class, %args) = @_;
+    my ($thing, %args) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
 
     ### roles...
-    do { does_ok($class, $_) for @{$args{does}} }
+    do { does_ok($thing, $_) for @{$args{does}} }
         if exists $args{does};
-    do { does_not_ok($class, $_) for @{$args{does_not}} }
+    do { does_not_ok($thing, $_) for @{$args{does_not}} }
         if exists $args{does_not};
 
     ### methods...
-    do { has_method_ok($class, $_) for @{$args{methods}} }
+    do { has_method_ok($thing, $_) for @{$args{methods}} }
         if exists $args{methods};
 
     ### attributes...
+    ATTRIBUTE_LOOP:
     for my $attribute (@{Data::OptList::mkopt($args{attributes} || [])}) {
 
         my ($name, $opts) = @$attribute;
-        has_attribute_ok($class, $name);
-        local $THING_NAME = "${class}'s attribute $name";
-        validate_thing(find_meta($class)->get_attribute($name), %$opts)
-            if $opts;
+        has_attribute_ok($thing, $name);
+
+        if ($opts) {
+
+            SKIP: {
+                skip 'Cannot examine attribute metaclass in roles', 1
+                    if (find_meta($thing)->isa('Moose::Meta::Role'));
+
+                    local $THING_NAME = "${thing}'s attribute $name";
+                    validate_thing(find_meta($thing)->get_attribute($name), %$opts);
+            }
+        }
     }
 
     return;
@@ -212,12 +240,15 @@ sub validate_class {
 }
 
 sub validate_role {
-    my ($class, %args) = @_;
+    my ($role, %args) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    return unless is_role $class;
+    return unless is_role $role;
 
-    return validate_thing $class => %args;
+    requires_method_ok($role => @{ $args{required_methods} })
+        if defined $args{required_methods};
+
+    return validate_thing $role => %args;
 }
 
 !!42;
@@ -228,13 +259,15 @@ sub validate_role {
 
 =encoding utf-8
 
+=for :stopwords Chris Weyl
+
 =head1 NAME
 
 Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.009 of Test::Moose::More - released April 26, 2012 as part of Test-Moose-More.
+This document describes version 0.010 of Test::Moose::More - released August 24, 2012 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -290,6 +323,13 @@ class name, instance, or role name.
 
 Queries $thing's metaclass to see if $thing has the methods named in @methods.
 
+=head2 requires_method_ok $thing, @methods
+
+Queries $thing's metaclass to see if $thing requires the methods named in
+@methods.
+
+Note that this really only makes sense if $thing is a role.
+
 =head2 is_role $thing
 
 Passes if $thing's metaclass is a L<Moose::Meta::Role>.
@@ -307,29 +347,41 @@ given package.
 
 Checks and makes sure a class/etc can still do all the standard Moose sugar.
 
-=head2 validate_class
+=head2 validate_thing
 
-validate_class 'Some::Class' => (
+Runs a bunch of tests against the given C<$thing>, as defined:
 
-    attributes => [ ... ],
-    methods    => [ ... ],
-    isa        => [ ... ],
+    validate_class $thing => (
 
-    # ensures class does these roles
-    does       => [ ... ],
+        attributes => [ ... ],
+        methods    => [ ... ],
+        isa        => [ ... ],
 
-    # ensures class does not do these roles
-    does_not   => [ ... ],
-);
+        # ensures $thing does these roles
+        does       => [ ... ],
+
+        # ensures $thing does not do these roles
+        does_not   => [ ... ],
+    );
+
+C<$thing> can be the name of a role or class, an object instance, or a
+metaclass.
 
 =head2 validate_role
 
-The same as validate_class(), but for roles.
+The same as validate_thing(), but ensures C<$thing> is a role, and allows for
+additional role-specific tests.
 
-=head2 validate_thing
+    validate_role $thing => (
 
-The same as validate_class() and validate_role(), except without the class or
-role validation.
+        required_methods => [ ... ],
+
+        # ...and all other options from validate_thing()
+
+=head2 validate_class
+
+The same as validate_thing(), but ensures C<$thing> is a class, and allows for
+additional class-specific tests.
 
 =head1 SEE ALSO
 

@@ -1,0 +1,59 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.68.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 7be14efc0f997d83168e05714c6ba163f21acf7b Changes
+SHA1 bf012241a3405c7459e184487c9016381ef89c2d INSTALL
+SHA1 3f8a1ea04b0b396aa8dc312bcc524b97411d8d2c MANIFEST
+SHA1 f6e9fcaa11a2373ccc5eebbf3d366bd4a9ee4092 META.json
+SHA1 b66c5082bdf36be7be499536cd0c8b7e6dcfee10 META.yml
+SHA1 b35b668b39a3fad4ee75d79afa5d74aade083f9b Makefile.PL
+SHA1 1e8592c3a6927ed659e86f87c1dd1c11ccc0c48a README
+SHA1 ca86028279a036627635699b00d1a4368bb7cbff dist.ini
+SHA1 55b8099b727c0f8964d61954cc104686475352e8 lib/Test/Moose/More.pm
+SHA1 f6f309e5f7eda469f4ad1227736b72abdb5a15ee t/00-compile.t
+SHA1 a4092d732782ed6548ea2ec6f236cdcc287238d5 t/000-report-versions-tiny.t
+SHA1 b7c38b3f08cdd54f2a94679268a873872b682fc4 t/author-pod-spell.t
+SHA1 184cd396cdd45481169f5248992011f8ec90392d t/check_sugar.t
+SHA1 8216a05c5609a9db68f9ea5803a4e7d5d1be4028 t/does_not_ok.t
+SHA1 1b9df03f24d8d84eb61fae98b6a4e4d17593119a t/does_ok.t
+SHA1 cce1f9fb39479b87d8fdd86efcd41c4cd8a4016b t/funcs.pm
+SHA1 c4312e00250b96c3ae61e9356f1e8c446c48e176 t/has_attribute_ok.t
+SHA1 2c5c501fa1761d05c7c1edd53a4e5481be7b5f87 t/has_method_ok.t
+SHA1 1a31c52a354370a625c458d840d0db70a05c55ce t/is_class.t
+SHA1 bfef3460be8109ac0ff0147c47af8a0842350135 t/is_role.t
+SHA1 420eb4874714423c8ac9b18872b31bb153d8d423 t/meta_ok.t
+SHA1 9c3627ff37f4fd5bddc34bf46cf3359eaf76a060 t/release-consistent-version.t
+SHA1 a032c41ef6887fab1b900669c2d304fab46680e2 t/release-eol.t
+SHA1 17feb05324a6c6a9da573cab7ed91788d4f37464 t/release-has-version.t
+SHA1 89b1b08b02975d3b94f52ba97b9d780357ca5f85 t/release-no-smart-comments.t
+SHA1 455d1dd1867212a665ad5ea4126b572411de300c t/release-no-tabs.t
+SHA1 adddf092c2865b394b42c99b19fe7b8a94281f11 t/release-pod-coverage.t
+SHA1 925cb6ab3159c6892d7499960ee83f33721c26fa t/release-pod-syntax.t
+SHA1 bb20c59891cc4f921d6434e155f8bb5d427f1162 t/release-portability.t
+SHA1 9ce9fc8e942d7e32857562172190ea0932d4634b t/requires_method_ok.t
+SHA1 50cf17c9a80cca8092e18b3cebd0a9747bae4df3 t/validate_class.t
+SHA1 e7e3ef495fd1c04b4cb9ceee4c8d13dd54baed91 t/validate_role.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQEcBAEBAgAGBQJQN/nRAAoJEOd5N1CvIgQk+F8IAL5K8U51eyD9SFnJ0rn95gg8
++CMaKuW3Mt/1YrN08SOmVjVCZaaEjfc5bNa3Shsj1TvTVTQEVmS9BYZCJRe9n8Er
+Nr+buVKb9HZY44/a8rYCW/ge/a/mJyciIx3XM+JqHEPboecQJgWNdTxTC79gAwPr
+1VeQJohJWysPzI8TiKtbcCd3eLPXFsAykkcdNKP9yDP1rm8oEZFS5huP5G7oL471
+N+9ZIAt/T3ky/IZVYSfNnLKe+HUCQzKNJApR/7CYHfKsM7dLzyZMQl/OJALzc9U1
+/mkJ4RZxvvNpSXqk1HfyLVBzg8eWMo3QeZpRsxvtRCmKq2I7xuG23lc0VI0ddrY=
+=a4T1
+-----END PGP SIGNATURE-----

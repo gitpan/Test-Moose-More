@@ -2,8 +2,8 @@ NAME
     Test::Moose::More - More tools for testing Moose packages
 
 VERSION
-    This document describes version 0.009 of Test::Moose::More - released
-    April 26, 2012 as part of Test-Moose-More.
+    This document describes version 0.010 of Test::Moose::More - released
+    August 24, 2012 as part of Test-Moose-More.
 
 SYNOPSIS
         use Test::Moose::More;
@@ -53,6 +53,12 @@ TEST_FUNCTIONS
     Queries $thing's metaclass to see if $thing has the methods named in
     @methods.
 
+  requires_method_ok $thing, @methods
+    Queries $thing's metaclass to see if $thing requires the methods named
+    in @methods.
+
+    Note that this really only makes sense if $thing is a role.
+
   is_role $thing
     Passes if $thing's metaclass is a Moose::Meta::Role.
 
@@ -67,26 +73,38 @@ TEST_FUNCTIONS
     Checks and makes sure a class/etc can still do all the standard Moose
     sugar.
 
-  validate_class
-    validate_class 'Some::Class' => (
+  validate_thing
+    Runs a bunch of tests against the given $thing, as defined:
 
-        attributes => [ ... ],
-        methods    => [ ... ],
-        isa        => [ ... ],
+        validate_class $thing => (
 
-        # ensures class does these roles
-        does       => [ ... ],
+            attributes => [ ... ],
+            methods    => [ ... ],
+            isa        => [ ... ],
 
-        # ensures class does not do these roles
-        does_not   => [ ... ],
-    );
+            # ensures $thing does these roles
+            does       => [ ... ],
+
+            # ensures $thing does not do these roles
+            does_not   => [ ... ],
+        );
+
+    $thing can be the name of a role or class, an object instance, or a
+    metaclass.
 
   validate_role
-    The same as validate_class(), but for roles.
+    The same as validate_thing(), but ensures $thing is a role, and allows
+    for additional role-specific tests.
 
-  validate_thing
-    The same as validate_class() and validate_role(), except without the
-    class or role validation.
+        validate_role $thing => (
+
+            required_methods => [ ... ],
+
+            # ...and all other options from validate_thing()
+
+  validate_class
+    The same as validate_thing(), but ensures $thing is a class, and allows
+    for additional class-specific tests.
 
 SEE ALSO
     Please see those modules/websites for more information related to this

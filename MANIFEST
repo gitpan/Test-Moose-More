@@ -1,11 +1,11 @@
 Changes
 INSTALL
-LICENSE
 MANIFEST
 META.json
 META.yml
 Makefile.PL
 README
+SIGNATURE
 dist.ini
 lib/Test/Moose/More.pm
 t/00-compile.t
@@ -28,4 +28,6 @@ t/release-no-tabs.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
 t/release-portability.t
+t/requires_method_ok.t
 t/validate_class.t
+t/validate_role.t
