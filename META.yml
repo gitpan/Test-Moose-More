@@ -7,7 +7,6 @@ build_requires:
   File::Temp: 0
   Moose: 0
   Moose::Role: 0
-  MooseX::AttributeShortcuts: 0
   Test::Builder::Tester: 0
   Test::More: 0.88
 configure_requires:
@@ -26,7 +25,7 @@ no_index:
 provides:
   Test::Moose::More:
     file: lib/Test/Moose/More.pm
-    version: 0.010
+    version: 0.011
 requires:
   Data::OptList: 0
   Moose::Util: 0
@@ -42,7 +41,7 @@ resources:
   bugtracker: https://github.com/RsrchBoy/test-moose-more/issues
   homepage: http://metacpan.org/release/Test-Moose-More/
   repository: git://github.com/RsrchBoy/test-moose-more.git
-version: 0.010
+version: 0.011
 x_Dist_Zilla:
   plugins:
     -
@@ -86,10 +85,6 @@ x_Dist_Zilla:
       name: '@RSRCHBOY/Dist::Zilla::Plugin::PruneCruft'
       version: 4.300021
     -
-      class: Dist::Zilla::Plugin::License
-      name: '@RSRCHBOY/Dist::Zilla::Plugin::License'
-      version: 4.300021
-    -
       class: Dist::Zilla::Plugin::ExecDir
       name: '@RSRCHBOY/Dist::Zilla::Plugin::ExecDir'
       version: 4.300021
@@ -117,6 +112,14 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::ReadmeFromPod
       name: '@RSRCHBOY/Dist::Zilla::Plugin::ReadmeFromPod'
       version: 0.16
+    -
+      class: Dist::Zilla::Plugin::MinimumPerl
+      name: '@RSRCHBOY/Dist::Zilla::Plugin::MinimumPerl'
+      version: 1.003
+    -
+      class: Dist::Zilla::Plugin::ReportVersions::Tiny
+      name: '@RSRCHBOY/Dist::Zilla::Plugin::ReportVersions::Tiny'
+      version: 1.05
     -
       class: Dist::Zilla::Plugin::AutoPrereqs
       name: '@RSRCHBOY/Dist::Zilla::Plugin::AutoPrereqs'
@@ -170,18 +173,6 @@ x_Dist_Zilla:
       name: '@RSRCHBOY/Dist::Zilla::Plugin::NoSmartCommentsTests'
       version: 0.006
     -
-      class: Dist::Zilla::Plugin::MinimumPerl
-      name: '@RSRCHBOY/Dist::Zilla::Plugin::MinimumPerl'
-      version: 1.003
-    -
-      class: Dist::Zilla::Plugin::ReportVersions::Tiny
-      name: '@RSRCHBOY/Dist::Zilla::Plugin::ReportVersions::Tiny'
-      version: 1.05
-    -
-      class: Dist::Zilla::Plugin::GitHub::Meta
-      name: '@RSRCHBOY/Dist::Zilla::Plugin::GitHub::Meta'
-      version: 0.27
-    -
       class: Dist::Zilla::Plugin::MetaConfig
       name: '@RSRCHBOY/Dist::Zilla::Plugin::MetaConfig'
       version: 4.300021
@@ -202,44 +193,52 @@ x_Dist_Zilla:
       name: '@RSRCHBOY/Dist::Zilla::Plugin::MetaProvides::Package'
       version: 1.14000001
     -
+      class: Dist::Zilla::Plugin::GitHub::Meta
+      name: '@RSRCHBOY/Dist::Zilla::Plugin::GitHub::Meta'
+      version: 0.27
+    -
       class: Dist::Zilla::Plugin::TestRelease
       name: '@RSRCHBOY/Dist::Zilla::Plugin::TestRelease'
-      version: 4.300021
-    -
-      class: Dist::Zilla::Plugin::ConfirmRelease
-      name: '@RSRCHBOY/Dist::Zilla::Plugin::ConfirmRelease'
       version: 4.300021
     -
       class: Dist::Zilla::Plugin::CheckChangesHasContent
       name: '@RSRCHBOY/Dist::Zilla::Plugin::CheckChangesHasContent'
       version: 0.006
     -
-      class: Dist::Zilla::Plugin::UploadToCPAN
-      name: '@RSRCHBOY/Dist::Zilla::Plugin::UploadToCPAN'
-      version: 4.300021
-    -
       class: Dist::Zilla::Plugin::CheckPrereqsIndexed
       name: '@RSRCHBOY/Dist::Zilla::Plugin::CheckPrereqsIndexed'
       version: 0.007
+    -
+      class: Dist::Zilla::Plugin::ConfirmRelease
+      name: '@RSRCHBOY/Dist::Zilla::Plugin::ConfirmRelease'
+      version: 4.300021
     -
       class: Dist::Zilla::Plugin::GitHub::Update
       name: '@RSRCHBOY/Dist::Zilla::Plugin::GitHub::Update'
       version: 0.27
     -
+      class: Dist::Zilla::Plugin::UploadToCPAN
+      name: '@RSRCHBOY/Dist::Zilla::Plugin::UploadToCPAN'
+      version: 4.300021
+    -
       class: Dist::Zilla::Plugin::Signature
       name: '@RSRCHBOY/Dist::Zilla::Plugin::Signature'
       version: 1.100930
+    -
+      class: Dist::Zilla::Plugin::Twitter
+      name: '@RSRCHBOY/Dist::Zilla::Plugin::Twitter'
+      version: 0.017
+    -
+      class: Dist::Zilla::Plugin::InstallRelease
+      name: '@RSRCHBOY/Dist::Zilla::Plugin::InstallRelease'
+      version: 0.008
     -
       class: Dist::Zilla::Plugin::ArchiveRelease
       name: '@RSRCHBOY/Dist::Zilla::Plugin::ArchiveRelease'
       version: 4.00
     -
-      class: Dist::Zilla::Plugin::PodWeaver
-      name: '@RSRCHBOY/Dist::Zilla::Plugin::PodWeaver'
-      version: 3.101641
-    -
-      class: Dist::Zilla::Plugin::PruneFiles
-      name: '@RSRCHBOY/Dist::Zilla::Plugin::PruneFiles'
+      class: Dist::Zilla::Plugin::License
+      name: '@RSRCHBOY/Dist::Zilla::Plugin::License'
       version: 4.300021
     -
       class: Dist::Zilla::Plugin::CopyFilesFromBuild
@@ -250,9 +249,9 @@ x_Dist_Zilla:
       name: '@RSRCHBOY/ReadmePodInRoot'
       version: 0.120120
     -
-      class: Dist::Zilla::Plugin::InstallRelease
-      name: '@RSRCHBOY/Dist::Zilla::Plugin::InstallRelease'
-      version: 0.008
+      class: Dist::Zilla::Plugin::PodWeaver
+      name: '@RSRCHBOY/Dist::Zilla::Plugin::PodWeaver'
+      version: 3.101641
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'
