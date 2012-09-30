@@ -57,22 +57,22 @@
    "provides" : {
       "Test::Moose::More" : {
          "file" : "lib/Test/Moose/More.pm",
-         "version" : "0.012"
+         "version" : "0.013"
       }
    },
    "release_status" : "testing",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/RsrchBoy/test-moose-more/issues"
+         "web" : "https://github.com/RsrchBoy/Test-Moose-More/issues"
       },
       "homepage" : "http://metacpan.org/release/Test-Moose-More/",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/RsrchBoy/test-moose-more.git",
-         "web" : "https://github.com/RsrchBoy/test-moose-more"
+         "url" : "git://github.com/RsrchBoy/Test-Moose-More.git",
+         "web" : "https://github.com/RsrchBoy/Test-Moose-More"
       }
    },
-   "version" : "0.012",
+   "version" : "0.013",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.016001"

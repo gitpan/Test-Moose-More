@@ -26,7 +26,7 @@ no_index:
 provides:
   Test::Moose::More:
     file: lib/Test/Moose/More.pm
-    version: 0.012
+    version: 0.013
 requires:
   Data::OptList: 0
   Moose::Autobox: 0
@@ -42,10 +42,10 @@ requires:
   strict: 0
   warnings: 0
 resources:
-  bugtracker: https://github.com/RsrchBoy/test-moose-more/issues
+  bugtracker: https://github.com/RsrchBoy/Test-Moose-More/issues
   homepage: http://metacpan.org/release/Test-Moose-More/
-  repository: git://github.com/RsrchBoy/test-moose-more.git
-version: 0.012
+  repository: git://github.com/RsrchBoy/Test-Moose-More.git
+version: 0.013
 x_Dist_Zilla:
   perl:
     version: 5.016001
