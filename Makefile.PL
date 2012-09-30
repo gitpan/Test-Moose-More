@@ -17,7 +17,8 @@ my %WriteMakefileArgs = (
     "Moose" => 0,
     "Moose::Role" => 0,
     "Test::Builder::Tester" => 0,
-    "Test::More" => "0.88"
+    "Test::More" => "0.88",
+    "namespace::autoclean" => 0
   },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
@@ -28,7 +29,10 @@ my %WriteMakefileArgs = (
   "NAME" => "Test::Moose::More",
   "PREREQ_PM" => {
     "Data::OptList" => 0,
+    "Moose::Autobox" => 0,
     "Moose::Util" => 0,
+    "Moose::Util::TypeConstraints" => 0,
+    "Perl6::Junction" => 0,
     "Scalar::Util" => 0,
     "Sub::Exporter" => 0,
     "Test::Builder" => 0,
@@ -37,7 +41,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.011",
+  "VERSION" => "0.012",
   "test" => {
     "TESTS" => "t/*.t"
   }

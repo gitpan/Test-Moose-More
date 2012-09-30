@@ -2,8 +2,8 @@ NAME
     Test::Moose::More - More tools for testing Moose packages
 
 VERSION
-    This document describes version 0.011 of Test::Moose::More - released
-    August 26, 2012 as part of Test-Moose-More.
+    This document describes version 0.012 of Test::Moose::More - released
+    September 29, 2012 as part of Test-Moose-More.
 
 SYNOPSIS
         use Test::Moose::More;
@@ -105,6 +105,10 @@ TEST_FUNCTIONS
   validate_class
     The same as validate_thing(), but ensures $thing is a class, and allows
     for additional class-specific tests.
+
+  validate_attribute
+    Run checks against an attribute. Not yet documented or tested
+    exhaustively.
 
 SEE ALSO
     Please see those modules/websites for more information related to this
