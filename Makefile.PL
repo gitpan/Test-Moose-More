@@ -16,6 +16,7 @@ my %WriteMakefileArgs = (
     "File::Temp" => 0,
     "Moose" => 0,
     "Moose::Role" => 0,
+    "TAP::SimpleOutput" => 0,
     "Test::Builder::Tester" => 0,
     "Test::More" => "0.88",
     "namespace::autoclean" => 0
@@ -41,7 +42,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.013",
+  "VERSION" => "0.014",
   "test" => {
     "TESTS" => "t/*.t"
   }

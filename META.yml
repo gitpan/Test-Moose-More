@@ -7,6 +7,7 @@ build_requires:
   File::Temp: 0
   Moose: 0
   Moose::Role: 0
+  TAP::SimpleOutput: 0
   Test::Builder::Tester: 0
   Test::More: 0.88
   namespace::autoclean: 0
@@ -26,7 +27,7 @@ no_index:
 provides:
   Test::Moose::More:
     file: lib/Test/Moose/More.pm
-    version: 0.013
+    version: 0.014
 requires:
   Data::OptList: 0
   Moose::Autobox: 0
@@ -45,7 +46,7 @@ resources:
   bugtracker: https://github.com/RsrchBoy/Test-Moose-More/issues
   homepage: http://metacpan.org/release/Test-Moose-More/
   repository: git://github.com/RsrchBoy/Test-Moose-More.git
-version: 0.013
+version: 0.014
 x_Dist_Zilla:
   perl:
     version: 5.016001
@@ -57,31 +58,31 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Git::Check
       name: '@RSRCHBOY/@Git/Check'
-      version: 1.122530
+      version: 1.122770
     -
       class: Dist::Zilla::Plugin::Git::Commit
       name: '@RSRCHBOY/@Git/Commit'
-      version: 1.122530
+      version: 1.122770
     -
       class: Dist::Zilla::Plugin::Git::Tag
       name: '@RSRCHBOY/@Git/Tag'
-      version: 1.122530
+      version: 1.122770
     -
       class: Dist::Zilla::Plugin::Git::Push
       name: '@RSRCHBOY/@Git/Push'
-      version: 1.122530
+      version: 1.122770
     -
       class: Dist::Zilla::Plugin::Git::NextVersion
       name: '@RSRCHBOY/Dist::Zilla::Plugin::Git::NextVersion'
-      version: 1.122530
+      version: 1.122770
     -
       class: Dist::Zilla::Plugin::Git::CheckFor::CorrectBranch
       name: '@RSRCHBOY/@Git::CheckFor/Git::CheckFor::CorrectBranch'
-      version: 0.004
+      version: 0.005
     -
       class: Dist::Zilla::Plugin::Git::CheckFor::Fixups
       name: '@RSRCHBOY/@Git::CheckFor/Git::CheckFor::Fixups'
-      version: 0.004
+      version: 0.005
     -
       class: Dist::Zilla::Plugin::GatherDir
       name: '@RSRCHBOY/Dist::Zilla::Plugin::GatherDir'

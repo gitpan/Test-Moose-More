@@ -60,6 +60,7 @@ eval { $v .= pmver('Moose::Util::TypeConstraints','any version') };
 eval { $v .= pmver('Perl6::Junction','any version') };
 eval { $v .= pmver('Scalar::Util','any version') };
 eval { $v .= pmver('Sub::Exporter','any version') };
+eval { $v .= pmver('TAP::SimpleOutput','any version') };
 eval { $v .= pmver('Test::Builder','any version') };
 eval { $v .= pmver('Test::Builder::Tester','any version') };
 eval { $v .= pmver('Test::Moose','any version') };
