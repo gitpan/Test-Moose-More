@@ -14,16 +14,16 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 5188bdf78ce7ebddd80349210adac71bdac897ad Changes
+SHA1 e2abc837b307e3cfbdd83075e9b28ebed16c731c Changes
 SHA1 bf012241a3405c7459e184487c9016381ef89c2d INSTALL
 SHA1 05207cbc5971035849c1de2c7cb3babaeaccb6fb LICENSE
-SHA1 188e76c1385b8d45694469f3a50ecd904a64bb47 MANIFEST
-SHA1 5164ed4ac4d96c30ad3cc66eb26e133062bf1889 META.json
-SHA1 37f89ddd3f225b482dbc1d30ae779a22b2f2faac META.yml
-SHA1 987f191a3ea97f9004a4672ff37631548f055e5f Makefile.PL
-SHA1 aa9da572ddaae9dd8bb87752b17fa07726a5ba05 README
+SHA1 b2a3f92987aeee689d02c24878797936812430ac MANIFEST
+SHA1 37af7a6d1ddf4499014513e277488facead4efa6 META.json
+SHA1 f99815607223fa9bb230856caafdc37d24fac860 META.yml
+SHA1 550be3e1d650cae36de6c0d410f0d239cd37b328 Makefile.PL
+SHA1 e93f9314689bb11302206402e518f572950acfc1 README
 SHA1 5810c16c23e04ad63ae4f41cde48a467625fe9e2 dist.ini
-SHA1 e6e9e7365405a88d0fdfe2eed9f07f048377c784 lib/Test/Moose/More.pm
+SHA1 75faa797c5578eb46b19c1475e8187f19bcd5bc7 lib/Test/Moose/More.pm
 SHA1 f6f309e5f7eda469f4ad1227736b72abdb5a15ee t/00-compile.t
 SHA1 d0b1aef0a6e865d4a1d5d875faf153c3d6a7da32 t/000-report-versions-tiny.t
 SHA1 f83d270c37f32a19a1ef00d3def279775ffd6909 t/author-pod-spell.t
@@ -32,7 +32,9 @@ SHA1 2b36ce7cc4fee13acdc6ce3748cfb57cd6a1dffb t/does_not_ok.t
 SHA1 c99877f39ec141a5e54d565feac04254e40bab6b t/does_ok.t
 SHA1 6d28f78d54ce90d525713095c5b350cee4b3d7f5 t/has_attribute_ok.t
 SHA1 2c5c501fa1761d05c7c1edd53a4e5481be7b5f87 t/has_method_ok.t
+SHA1 f19ee32cd706162430cf6c9be937688a7919e2c2 t/is_anon.t
 SHA1 1a31c52a354370a625c458d840d0db70a05c55ce t/is_class.t
+SHA1 da364d4a157f0ae40c9da224d829f83c4951ffd2 t/is_not_anon.t
 SHA1 bfef3460be8109ac0ff0147c47af8a0842350135 t/is_role.t
 SHA1 4e15b688710f882cf42c2453db1b4b0827c64f4f t/meta_ok.t
 SHA1 9c3627ff37f4fd5bddc34bf46cf3359eaf76a060 t/release-consistent-version.t
@@ -44,17 +46,17 @@ SHA1 adddf092c2865b394b42c99b19fe7b8a94281f11 t/release-pod-coverage.t
 SHA1 925cb6ab3159c6892d7499960ee83f33721c26fa t/release-pod-syntax.t
 SHA1 bb20c59891cc4f921d6434e155f8bb5d427f1162 t/release-portability.t
 SHA1 9ce9fc8e942d7e32857562172190ea0932d4634b t/requires_method_ok.t
-SHA1 50aa9a342fbb00d8a6f3004f2c922489ce6dc464 t/validate_attribute.t
-SHA1 66b32f8d991c661c72472407f94a04dd355c5d8a t/validate_class.t
+SHA1 e73e3e7e4d1fbb3604c0a682e14aa4f3564df944 t/validate_attribute.t
+SHA1 91208ffdd195e2b3ad2fb6da4583911efbf9fbee t/validate_class.t
 SHA1 6bf2c6fdfbd0975dcd70747415e8a5e8cf8ce677 t/validate_role.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iQEcBAEBAgAGBQJQgztAAAoJEOd5N1CvIgQkULEIAMW+ex1vxcnwn0DgEQyDCS6E
-wSjXk9xfl+6EWi0Uc6mpbjTjIT4218Ykpk1SHydIi7Uk8QLNb9h45OZKbJp6V+SG
-xi3W5qdp3jrLYuXHUuftM4I5/pKZ0xgAljFc4RhelImDA6ciPG8mWXOTD1uhyaBD
-rWqoAN1S3xR5Lkjt1YdwiNckCmapq88NinGN5ZgaSwOMzSlAtjUFpQrr1t6ekKUz
-5AnmzbZ7dEVJskGN2WH0/osswq58mwcK83VLpNUuMTlFPE+KlYorDfBweZWCUkb+
-+5mOjq475BaFsNBzY8GgX1wffpqgD9u/Vccieia7mJu+L5qGt03bDDjwoIlgWDE=
-=Ztp4
+iQEcBAEBAgAGBQJQhHE6AAoJEOd5N1CvIgQkreYH/3hdCelvDE1WJoB/iPCa9qfo
+nQvqvrAtRcOyhGs4zRn6J7BG84zzCDC9B0dDcjE6BJH1Dgs2mxHfAhyDrJ6i5IlO
+1dDHmJIMYTunCNPMnMRgz6cCn5v0hxPlP8E5qQWJ8PsaPvcLVJxa7uUr37DAKGES
+5AjxEdeF/pl7/ZA448P3H8i0oySIKwqhduk68ugBNhEZQ8ai1bZTA5Xi0LBBxzYA
+La4yAyUDHUeZ/mpw7tszG0hnjQATaPSVPSnKV7FV/6qhfLzMKmKxQiCkv4kXVlzj
+0g+BGlnlKUG3aAbyri+g+4KK1tuLW3IlDRV3KUl76ia/2r+sY4xVPmuXe7sBYnM=
+=PmlZ
 -----END PGP SIGNATURE-----

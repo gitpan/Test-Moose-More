@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.015';
+  $Test::Moose::More::VERSION = '0.016';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -20,6 +20,7 @@ use warnings;
 use Sub::Exporter -setup => {
     exports => [ qw{
         is_role is_class
+        is_anon is_not_anon
         has_method_ok
         requires_method_ok
         check_sugar_ok check_sugar_removed_ok
@@ -172,6 +173,25 @@ sub _is_moosey {
 }
 
 
+sub is_anon {
+    my ($thing, $message) = @_;
+
+    my $thing_meta = find_meta($thing);
+    $message ||= _thing_name($thing, $thing_meta) . ' is anonymous';
+
+    return $tb->ok(!!$thing_meta->is_anon, $message);
+}
+
+sub is_not_anon {
+    my ($thing, $message) = @_;
+
+    my $thing_meta = find_meta($thing);
+    $message ||= _thing_name($thing, $thing_meta) . ' is not anonymous';
+
+    return $tb->ok(!$thing_meta->is_anon, $message);
+}
+
+
 sub known_sugar { qw{ has around augment inner before after blessed confess } }
 
 sub check_sugar_removed_ok {
@@ -199,6 +219,10 @@ sub validate_thing {
     my ($thing, %args) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
+
+    ### anonymous...
+    $args{anonymous} ? is_anon $thing : is_not_anon $thing
+        if exists $args{anonymous};
 
     ### roles...
     do { does_ok($thing, $_) for @{$args{does}} }
@@ -282,7 +306,8 @@ sub _validate_attribute {
         sort keys %opts
         ;
 
-    validate_thing $att => %thing_opts
+    ### %thing_opts
+    validate_class $att => %thing_opts
         if keys %thing_opts;
 
     return _attribute_options_ok($att, %opts);
@@ -375,7 +400,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.015 of Test::Moose::More - released October 20, 2012 as part of Test-Moose-More.
+This document describes version 0.016 of Test::Moose::More - released October 21, 2012 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -445,6 +470,14 @@ Passes if $thing's metaclass is a L<Moose::Meta::Role>.
 =head2 is_class $thing
 
 Passes if $thing's metaclass is a L<Moose::Meta::Class>.
+
+=head2 is_anon $thing
+
+Passes if $thing is "anonymous".
+
+=head2 is_not_anon $thing
+
+Passes if $thing is not "anonymous".
 
 =head2 check_sugar_removed_ok $thing
 

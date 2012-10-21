@@ -66,7 +66,7 @@
    "provides" : {
       "Test::Moose::More" : {
          "file" : "lib/Test/Moose/More.pm",
-         "version" : "0.015"
+         "version" : "0.016"
       }
    },
    "release_status" : "stable",
@@ -81,7 +81,7 @@
          "web" : "https://github.com/RsrchBoy/Test-Moose-More"
       }
    },
-   "version" : "0.015",
+   "version" : "0.016",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.016001"
