@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.016';
+  $Test::Moose::More::VERSION = '0.017';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -354,6 +354,14 @@ sub _attribute_options_ok {
         is($att->$property, $value, "$thing_name option $property correct")
     };
 
+    if (my $is_required = delete $opts{required}) {
+
+        $is_required
+            ? ok($att->is_required,  "$thing_name is required")
+            : ok(!$att->is_required, "$thing_name is not required")
+            ;
+    }
+
     $check->($_) for grep { any(@check_opts) eq $_ } sort keys %opts;
 
     do { $tb->skip("cannot test '$_' options yet", 1); delete $opts{$_} }
@@ -376,8 +384,16 @@ sub _attribute_options_ok {
             ;
     }
 
-    fail "unknown attribute option: $_"
-        for sort keys %opts;
+    for my $opt (sort keys %opts) {
+
+        do { fail "unknown attribute option: $opt"; next }
+            unless $att->meta->find_attribute_by_name($opt);
+
+        $check->($opt);
+    }
+
+    #fail "unknown attribute option: $_"
+        #for sort keys %opts;
 
     return;
 }
@@ -400,7 +416,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.016 of Test::Moose::More - released October 21, 2012 as part of Test-Moose-More.
+This document describes version 0.017 of Test::Moose::More - released October 28, 2012 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -554,6 +570,7 @@ expect:
         default  => undef,
         init_arg => 'foo',
         lazy     => 1,
+        required => undef,
     );
 
 Not yet documented or tested exhaustively; please see t/validate_attribute.t
