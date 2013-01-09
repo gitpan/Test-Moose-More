@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.017';
+  $Test::Moose::More::VERSION = '0.018';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -384,6 +384,14 @@ sub _attribute_options_ok {
             ;
     }
 
+    if (exists $opts{coerce}) {
+
+        delete $opts{coerce}
+            ? ok( $att->should_coerce, "$thing_name should coerce")
+            : ok(!$att->should_coerce, "$thing_name should not coerce")
+            ;
+    }
+
     for my $opt (sort keys %opts) {
 
         do { fail "unknown attribute option: $opt"; next }
@@ -416,7 +424,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.017 of Test::Moose::More - released October 28, 2012 as part of Test-Moose-More.
+This document describes version 0.018 of Test::Moose::More - released January 09, 2013 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -599,20 +607,6 @@ Please see those modules/websites for more information related to this module.
 L<Test::Moose>
 
 =back
-
-=head1 SOURCE
-
-The development version is on github at L<http://github.com/RsrchBoy/Test-Moose-More>
-and may be cloned from L<git://github.com/RsrchBoy/Test-Moose-More.git>
-
-=head1 BUGS
-
-Please report any bugs or feature requests on the bugtracker website
-https://github.com/RsrchBoy/Test-Moose-More/issues
-
-When submitting a bug or request, please include a test-file or a
-patch to an existing test-file that illustrates the bug or desired
-feature.
 
 =head1 AUTHOR
 

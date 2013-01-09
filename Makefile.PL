@@ -15,6 +15,7 @@ my %WriteMakefileArgs = (
     "File::Find" => 0,
     "File::Temp" => 0,
     "Moose" => 0,
+    "Moose::Deprecated" => 0,
     "Moose::Role" => 0,
     "TAP::SimpleOutput" => 0,
     "Test::Builder::Tester" => 0,
@@ -42,9 +43,9 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.017",
+  "VERSION" => "0.018",
   "test" => {
-    "TESTS" => "t/*.t"
+    "TESTS" => "t/*.t t/attribute/*.t"
   }
 );
 

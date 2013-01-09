@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.68.
+signed via the Module::Signature module, version 0.70.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,19 +14,21 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 17364fb5e76b3f555cceb612cacdaa2473bb319c Changes
+SHA1 b3b2136de0867ed547494cfffdaca80eed0c2dc4 Changes
 SHA1 bf012241a3405c7459e184487c9016381ef89c2d INSTALL
 SHA1 05207cbc5971035849c1de2c7cb3babaeaccb6fb LICENSE
-SHA1 b2a3f92987aeee689d02c24878797936812430ac MANIFEST
-SHA1 52e0da396e8eb7a277758e54691d954894155cf9 META.json
-SHA1 ed5bba898caff970be723a6caefbbd65dfb31536 META.yml
-SHA1 cd2c90442769985f2092ef991fd0d7b78a280e41 Makefile.PL
-SHA1 c0a1bee516500509479da9b62066d05e2d2b69da README
+SHA1 b3bd3b0288038a4bb4950f77ce216bbb23a494d1 MANIFEST
+SHA1 604ad740709a8443581b196dbe03f2a943d70b81 META.json
+SHA1 2f169f52f37e1c4169aa58096b6e621f80358a23 META.yml
+SHA1 80d4f622bbf94398bc0b6265ccfa2f39f740533a Makefile.PL
+SHA1 652650efc759cefb0d16865fa36ed939f4f2d14f README
+SHA1 2e987aae481186d076f925fcb29a40b013d4cd19 cpanfile
 SHA1 5810c16c23e04ad63ae4f41cde48a467625fe9e2 dist.ini
-SHA1 d612496a02ca2e65c93dd597170a0202fb45c322 lib/Test/Moose/More.pm
+SHA1 69878fa2bc22165b7c4fb956160841c6f3121f2e lib/Test/Moose/More.pm
 SHA1 f6f309e5f7eda469f4ad1227736b72abdb5a15ee t/00-compile.t
-SHA1 d0b1aef0a6e865d4a1d5d875faf153c3d6a7da32 t/000-report-versions-tiny.t
-SHA1 f83d270c37f32a19a1ef00d3def279775ffd6909 t/author-pod-spell.t
+SHA1 3544142b125f6b2679f6df84f48c4c75234469cf t/000-report-versions-tiny.t
+SHA1 1d0f344cfedae8633b9404fe4825b4227167a8ac t/attribute/coerce.t
+SHA1 c2d003030e3a1cb7b6fde50c73558bf32e7a375a t/author-pod-spell.t
 SHA1 184cd396cdd45481169f5248992011f8ec90392d t/check_sugar.t
 SHA1 2b36ce7cc4fee13acdc6ce3748cfb57cd6a1dffb t/does_not_ok.t
 SHA1 c99877f39ec141a5e54d565feac04254e40bab6b t/does_ok.t
@@ -43,8 +45,8 @@ SHA1 17feb05324a6c6a9da573cab7ed91788d4f37464 t/release-has-version.t
 SHA1 89b1b08b02975d3b94f52ba97b9d780357ca5f85 t/release-no-smart-comments.t
 SHA1 455d1dd1867212a665ad5ea4126b572411de300c t/release-no-tabs.t
 SHA1 adddf092c2865b394b42c99b19fe7b8a94281f11 t/release-pod-coverage.t
+SHA1 16f3d51ec9ccd96d151805f32abe5926b76e35c2 t/release-pod-linkcheck.t
 SHA1 925cb6ab3159c6892d7499960ee83f33721c26fa t/release-pod-syntax.t
-SHA1 bb20c59891cc4f921d6434e155f8bb5d427f1162 t/release-portability.t
 SHA1 9ce9fc8e942d7e32857562172190ea0932d4634b t/requires_method_ok.t
 SHA1 125b4927938456efb41f86ee4c031a705b9eb10e t/validate_attribute.t
 SHA1 91208ffdd195e2b3ad2fb6da4583911efbf9fbee t/validate_class.t
@@ -52,11 +54,11 @@ SHA1 6bf2c6fdfbd0975dcd70747415e8a5e8cf8ce677 t/validate_role.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iQEcBAEBAgAGBQJQjbPhAAoJEOd5N1CvIgQkggEH/jrCnPw85rNx0csZVZvB1uyc
-t3+CtcM5j1LZKZSO0RGkNSNxvCUkfAqtIM06LOATtaSy8+pUsNNHqovPLhce7pmg
-/WQVBJ1BiwLklQxFTsc3fzeRmFKr6Ypaz3lvGb1aa/UWRwOghh2OPvWBIntrsRUy
-KZJ1u26DAZLLpWREUrykNN33BwVl3eWDxbYTk+ibOrMbZxN7kyEhH5NGnRnYXfyh
-b49Zxdva6Nl6l1xouEgv8o8ykauix8/oV/k9+/klcCVYWNrKDagAPulfDf7sdoja
-y5jqWqumGftQgS0UsRDolEI1WrTxZx7iXeEJAReutGbuZApYA3qPCSnA5NICG5U=
-=Vv2f
+iQEcBAEBAgAGBQJQ7ZE1AAoJEOd5N1CvIgQksA4IAKlYkN+hMif2T85u8fah0nXq
+cq571KV5KWmHR+G+heuzaFFqKH/5KJLWadGQZWmSnxtHsW147exbx6l4dhBcQDDH
+4yxs5AMkSPz7QraQfuywTlOV0D5EB21RPgdlIr1YGQ6klwgbmrKDW/ZOdMBqIFVX
+OpSiTIkAXuUQ9PtVLps5BRcsWXFqFqeJABrIQh8qL/KDN+n4VK49AzJ/Dp8VQGtL
+TkY/4K4pE/Uxh8ew3Ih84m+tfQraZ6GKgzcA/hhOKM4MG3WLdR7f1voh7dF93VWh
++dYoG6IevcT9NbdMJEMe0NyFR2ww9tpzl6IybhsMdxbdLl3HBBI9P6iW8Ogk6gE=
+=NRfj
 -----END PGP SIGNATURE-----
