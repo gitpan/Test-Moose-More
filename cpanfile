@@ -16,7 +16,6 @@ on 'test' => sub {
   requires "File::Find" => "0";
   requires "File::Temp" => "0";
   requires "Moose" => "0";
-  requires "Moose::Deprecated" => "0";
   requires "Moose::Role" => "0";
   requires "TAP::SimpleOutput" => "0";
   requires "Test::Builder::Tester" => "0";

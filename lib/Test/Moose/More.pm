@@ -9,7 +9,7 @@
 #
 package Test::Moose::More;
 {
-  $Test::Moose::More::VERSION = '0.018';
+  $Test::Moose::More::VERSION = '0.019';
 }
 
 # ABSTRACT: More tools for testing Moose packages
@@ -424,7 +424,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.018 of Test::Moose::More - released January 09, 2013 as part of Test-Moose-More.
+This document describes version 0.019 of Test::Moose::More - released January 21, 2013 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
