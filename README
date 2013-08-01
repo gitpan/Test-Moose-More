@@ -2,8 +2,8 @@ NAME
     Test::Moose::More - More tools for testing Moose packages
 
 VERSION
-    This document describes version 0.019 of Test::Moose::More - released
-    January 21, 2013 as part of Test-Moose-More.
+    This document describes version 0.020 of Test::Moose::More - released
+    August 01, 2013 as part of Test-Moose-More.
 
 SYNOPSIS
         use Test::Moose::More;
@@ -163,6 +163,18 @@ SEE ALSO
     module.
 
     *   Test::Moose
+
+SOURCE
+    The development version is on github at
+    <http://github.com/RsrchBoy/Test-Moose-More> and may be cloned from
+    <git://github.com/RsrchBoy/Test-Moose-More.git>
+
+BUGS
+    Please report any bugs or feature requests on the bugtracker website
+    https://github.com/RsrchBoy/Test-Moose-More/issues
+
+    When submitting a bug or request, please include a test-file or a patch
+    to an existing test-file that illustrates the bug or desired feature.
 
 AUTHOR
     Chris Weyl <cweyl@alumni.drew.edu>

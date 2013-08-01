@@ -2,9 +2,9 @@ requires "Data::OptList" => "0";
 requires "Moose::Autobox" => "0";
 requires "Moose::Util" => "0";
 requires "Moose::Util::TypeConstraints" => "0";
-requires "Perl6::Junction" => "0";
 requires "Scalar::Util" => "0";
 requires "Sub::Exporter" => "0";
+requires "Syntax::Keyword::Junction" => "0";
 requires "Test::Builder" => "0";
 requires "Test::Moose" => "0";
 requires "Test::More" => "0";
@@ -13,13 +13,13 @@ requires "strict" => "0";
 requires "warnings" => "0";
 
 on 'test' => sub {
-  requires "File::Find" => "0";
-  requires "File::Temp" => "0";
+  requires "Capture::Tiny" => "0";
   requires "Moose" => "0";
   requires "Moose::Role" => "0";
   requires "TAP::SimpleOutput" => "0";
   requires "Test::Builder::Tester" => "0";
   requires "Test::More" => "0.88";
+  requires "blib" => "0";
   requires "namespace::autoclean" => "0";
 };
 

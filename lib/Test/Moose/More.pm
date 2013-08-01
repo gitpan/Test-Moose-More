@@ -8,9 +8,14 @@
 #   The GNU Lesser General Public License, Version 2.1, February 1999
 #
 package Test::Moose::More;
-{
-  $Test::Moose::More::VERSION = '0.019';
+BEGIN {
+  $Test::Moose::More::AUTHORITY = 'cpan:RSRCHBOY';
 }
+{
+  $Test::Moose::More::VERSION = '0.020';
+}
+# git description: 0.019-4-g493b8f1
+
 
 # ABSTRACT: More tools for testing Moose packages
 
@@ -38,7 +43,7 @@ use Test::Builder;
 use Test::More;
 use Test::Moose 'with_immutable';
 use Scalar::Util 'blessed';
-use Perl6::Junction 'any';
+use Syntax::Keyword::Junction 'any';
 use Moose::Autobox;
 use Moose::Util 'does_role', 'find_meta';
 use Moose::Util::TypeConstraints;
@@ -424,7 +429,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.019 of Test::Moose::More - released January 21, 2013 as part of Test-Moose-More.
+This document describes version 0.020 of Test::Moose::More - released August 01, 2013 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -607,6 +612,20 @@ Please see those modules/websites for more information related to this module.
 L<Test::Moose>
 
 =back
+
+=head1 SOURCE
+
+The development version is on github at L<http://github.com/RsrchBoy/Test-Moose-More>
+and may be cloned from L<git://github.com/RsrchBoy/Test-Moose-More.git>
+
+=head1 BUGS
+
+Please report any bugs or feature requests on the bugtracker website
+https://github.com/RsrchBoy/Test-Moose-More/issues
+
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
 
 =head1 AUTHOR
 
