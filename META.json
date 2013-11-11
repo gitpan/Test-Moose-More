@@ -60,7 +60,7 @@
             "Moose" : "0",
             "Moose::Role" : "0",
             "Perl::Version" : "0",
-            "TAP::SimpleOutput" : "0",
+            "TAP::SimpleOutput" : "0.002",
             "Test::Builder::Tester" : "0",
             "Test::CheckDeps" : "0.010",
             "Test::More" : "0.94",
@@ -73,7 +73,7 @@
    "provides" : {
       "Test::Moose::More" : {
          "file" : "lib/Test/Moose/More.pm",
-         "version" : "0.021"
+         "version" : "0.022"
       }
    },
    "release_status" : "stable",
@@ -88,7 +88,7 @@
          "web" : "https://github.com/RsrchBoy/Test-Moose-More"
       }
    },
-   "version" : "0.021",
+   "version" : "0.022",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018001"

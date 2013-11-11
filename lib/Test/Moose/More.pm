@@ -12,9 +12,9 @@ BEGIN {
   $Test::Moose::More::AUTHORITY = 'cpan:RSRCHBOY';
 }
 {
-  $Test::Moose::More::VERSION = '0.021';
+  $Test::Moose::More::VERSION = '0.022';
 }
-# git description: 0.020-6-g1ab138e
+# git description: 0.021-1-gad34934
 
 
 # ABSTRACT: More tools for testing Moose packages
@@ -430,7 +430,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.021 of Test::Moose::More - released November 10, 2013 as part of Test-Moose-More.
+This document describes version 0.022 of Test::Moose::More - released November 10, 2013 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 

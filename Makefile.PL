@@ -40,7 +40,7 @@ my %WriteMakefileArgs = (
     "Moose" => 0,
     "Moose::Role" => 0,
     "Perl::Version" => 0,
-    "TAP::SimpleOutput" => 0,
+    "TAP::SimpleOutput" => "0.002",
     "Test::Builder::Tester" => 0,
     "Test::CheckDeps" => "0.010",
     "Test::More" => "0.94",
@@ -48,7 +48,7 @@ my %WriteMakefileArgs = (
     "constant" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.021",
+  "VERSION" => "0.022",
   "test" => {
     "TESTS" => "t/*.t t/attribute/*.t"
   }
@@ -69,7 +69,7 @@ my %FallbackPrereqs = (
   "Scalar::Util" => 0,
   "Sub::Exporter" => 0,
   "Syntax::Keyword::Junction" => 0,
-  "TAP::SimpleOutput" => 0,
+  "TAP::SimpleOutput" => "0.002",
   "Test::Builder" => 0,
   "Test::Builder::Tester" => 0,
   "Test::CheckDeps" => "0.010",

@@ -9,7 +9,7 @@ build_requires:
   Moose: 0
   Moose::Role: 0
   Perl::Version: 0
-  TAP::SimpleOutput: 0
+  TAP::SimpleOutput: 0.002
   Test::Builder::Tester: 0
   Test::CheckDeps: 0.010
   Test::More: 0.94
@@ -32,7 +32,7 @@ no_index:
 provides:
   Test::Moose::More:
     file: lib/Test/Moose/More.pm
-    version: 0.021
+    version: 0.022
 requires:
   Data::OptList: 0
   Moose::Autobox: 0
@@ -51,7 +51,7 @@ resources:
   bugtracker: https://github.com/RsrchBoy/Test-Moose-More/issues
   homepage: http://metacpan.org/release/Test-Moose-More/
   repository: git://github.com/RsrchBoy/Test-Moose-More.git
-version: 0.021
+version: 0.022
 x_Dist_Zilla:
   perl:
     version: 5.018001
