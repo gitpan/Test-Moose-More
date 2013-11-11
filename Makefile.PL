@@ -29,51 +29,64 @@ my %WriteMakefileArgs = (
     "Syntax::Keyword::Junction" => 0,
     "Test::Builder" => 0,
     "Test::Moose" => 0,
-    "Test::More" => 0,
+    "Test::More" => "0.94",
     "strict" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
-    "Capture::Tiny" => 0,
+    "File::Spec" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
     "Moose" => 0,
     "Moose::Role" => 0,
+    "Perl::Version" => 0,
     "TAP::SimpleOutput" => 0,
     "Test::Builder::Tester" => 0,
-    "Test::More" => "0.88",
-    "blib" => 0,
+    "Test::CheckDeps" => "0.010",
+    "Test::More" => "0.94",
+    "aliased" => 0,
+    "constant" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.020",
+  "VERSION" => "0.021",
   "test" => {
     "TESTS" => "t/*.t t/attribute/*.t"
   }
 );
 
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
-  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
-  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
-  for my $mod ( keys %$tr ) {
-    if ( exists $br->{$mod} ) {
-      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
-    }
-    else {
-      $br->{$mod} = $tr->{$mod};
-    }
-  }
-}
+my %FallbackPrereqs = (
+  "Data::OptList" => 0,
+  "File::Spec" => 0,
+  "IO::Handle" => 0,
+  "IPC::Open3" => 0,
+  "Moose" => 0,
+  "Moose::Autobox" => 0,
+  "Moose::Role" => 0,
+  "Moose::Util" => 0,
+  "Moose::Util::TypeConstraints" => 0,
+  "Perl::Version" => 0,
+  "Scalar::Util" => 0,
+  "Sub::Exporter" => 0,
+  "Syntax::Keyword::Junction" => 0,
+  "TAP::SimpleOutput" => 0,
+  "Test::Builder" => 0,
+  "Test::Builder::Tester" => 0,
+  "Test::CheckDeps" => "0.010",
+  "Test::Moose" => 0,
+  "Test::More" => "0.94",
+  "aliased" => 0,
+  "constant" => 0,
+  "namespace::autoclean" => 0,
+  "strict" => 0,
+  "warnings" => 0
+);
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
-  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
-  my $pp = $WriteMakefileArgs{PREREQ_PM};
-  for my $mod ( keys %$br ) {
-    if ( exists $pp->{$mod} ) {
-      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
-    }
-    else {
-      $pp->{$mod} = $br->{$mod};
-    }
-  }
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  delete $WriteMakefileArgs{TEST_REQUIRES};
+  delete $WriteMakefileArgs{BUILD_REQUIRES};
+  $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
 }
 
 delete $WriteMakefileArgs{CONFIGURE_REQUIRES}

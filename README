@@ -2,8 +2,8 @@ NAME
     Test::Moose::More - More tools for testing Moose packages
 
 VERSION
-    This document describes version 0.020 of Test::Moose::More - released
-    August 01, 2013 as part of Test-Moose-More.
+    This document describes version 0.021 of Test::Moose::More - released
+    November 10, 2013 as part of Test-Moose-More.
 
 SYNOPSIS
         use Test::Moose::More;
@@ -17,7 +17,7 @@ SYNOPSIS
 DESCRIPTION
     This package contains a number of additional tests that can be employed
     against Moose classes/roles. It is intended to replace Test::Moose in
-    your tests, and reexports any tests that it has and we do not, yet.
+    your tests, and re-exports any tests that it has and we do not, yet.
 
 FUNCTIONS
   known_sugar

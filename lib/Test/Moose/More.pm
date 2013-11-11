@@ -12,9 +12,9 @@ BEGIN {
   $Test::Moose::More::AUTHORITY = 'cpan:RSRCHBOY';
 }
 {
-  $Test::Moose::More::VERSION = '0.020';
+  $Test::Moose::More::VERSION = '0.021';
 }
-# git description: 0.019-4-g493b8f1
+# git description: 0.020-6-g1ab138e
 
 
 # ABSTRACT: More tools for testing Moose packages
@@ -269,7 +269,8 @@ sub validate_class {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
     return unless is_class $class;
 
-    do { isa_ok($class, $_) for @{$args{isa}} }
+    my $name = ref $class || $class;
+    do { ok($class->isa($_), "$name isa $_") for @{$args{isa}} }
         if exists $args{isa};
 
     return validate_thing $class => %args;
@@ -419,7 +420,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =for :stopwords Chris Weyl
 
@@ -429,7 +430,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.020 of Test::Moose::More - released August 01, 2013 as part of Test-Moose-More.
+This document describes version 0.021 of Test::Moose::More - released November 10, 2013 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -445,7 +446,7 @@ This document describes version 0.020 of Test::Moose::More - released August 01,
 
 This package contains a number of additional tests that can be employed
 against Moose classes/roles.  It is intended to replace L<Test::Moose> in your
-tests, and reexports any tests that it has and we do not, yet.
+tests, and re-exports any tests that it has and we do not, yet.
 
 =head1 FUNCTIONS
 
