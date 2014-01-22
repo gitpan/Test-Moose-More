@@ -11,11 +11,8 @@ package Test::Moose::More;
 BEGIN {
   $Test::Moose::More::AUTHORITY = 'cpan:RSRCHBOY';
 }
-{
-  $Test::Moose::More::VERSION = '0.022';
-}
-# git description: 0.021-1-gad34934
-
+# git description: 0.022-3-g5fe969c
+$Test::Moose::More::VERSION = '0.023';
 
 # ABSTRACT: More tools for testing Moose packages
 
@@ -422,7 +419,7 @@ __END__
 
 =encoding UTF-8
 
-=for :stopwords Chris Weyl
+=for :stopwords Chris Weyl Karen Etheridge <ether@cpan.org>
 
 =head1 NAME
 
@@ -430,7 +427,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.022 of Test::Moose::More - released November 10, 2013 as part of Test-Moose-More.
+This document describes version 0.023 of Test::Moose::More - released January 21, 2014 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -631,6 +628,10 @@ feature.
 =head1 AUTHOR
 
 Chris Weyl <cweyl@alumni.drew.edu>
+
+=head1 CONTRIBUTOR
+
+Karen Etheridge <ether@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
