@@ -11,8 +11,8 @@ package Test::Moose::More;
 BEGIN {
   $Test::Moose::More::AUTHORITY = 'cpan:RSRCHBOY';
 }
-# git description: 0.022-3-g5fe969c
-$Test::Moose::More::VERSION = '0.023';
+# git description: 0.023-1-g4eafdbb
+$Test::Moose::More::VERSION = '0.024';
 
 # ABSTRACT: More tools for testing Moose packages
 
@@ -243,7 +243,7 @@ sub validate_thing {
         my ($name, $opts) = @$attribute;
         has_attribute_ok($thing, $name);
 
-        if ($opts) {
+        if ($opts && (my $att = find_meta($thing)->get_attribute($name))) {
 
             SKIP: {
                 skip 'Cannot examine attribute metaclass in roles', 1
@@ -251,7 +251,7 @@ sub validate_thing {
 
                 local $THING_NAME = "${thing}'s attribute $name";
                 $tb->subtest("[subtest] checking $THING_NAME" => sub {
-                    _validate_attribute(find_meta($thing)->get_attribute($name), %$opts);
+                    _validate_attribute($att, %$opts);
                 });
             }
         }
@@ -419,7 +419,9 @@ __END__
 
 =encoding UTF-8
 
-=for :stopwords Chris Weyl Karen Etheridge <ether@cpan.org>
+=for :stopwords Chris Weyl Karen Etheridge
+
+=for :stopwords Wishlist flattr flattr'ed gittip gittip'ed
 
 =head1 NAME
 
@@ -427,7 +429,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.023 of Test::Moose::More - released January 21, 2014 as part of Test-Moose-More.
+This document describes version 0.024 of Test::Moose::More - released May 14, 2014 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -613,8 +615,8 @@ L<Test::Moose>
 
 =head1 SOURCE
 
-The development version is on github at L<http://github.com/RsrchBoy/Test-Moose-More>
-and may be cloned from L<git://github.com/RsrchBoy/Test-Moose-More.git>
+The development version is on github at L<http://https://github.com/RsrchBoy/Test-Moose-More>
+and may be cloned from L<git://https://github.com/RsrchBoy/Test-Moose-More.git>
 
 =head1 BUGS
 
@@ -628,6 +630,25 @@ feature.
 =head1 AUTHOR
 
 Chris Weyl <cweyl@alumni.drew.edu>
+
+=head2 I'm a material boy in a material world
+
+=begin html
+
+<a href="https://www.gittip.com/RsrchBoy/"><img src="https://raw.githubusercontent.com/gittip/www.gittip.com/master/www/assets/%25version/logo.png" /></a>
+<a href="http://bit.ly/rsrchboys-wishlist"><img src="http://wps.io/wp-content/uploads/2014/05/amazon_wishlist.resized.png" /></a>
+<a href="https://flattr.com/submit/auto?user_id=RsrchBoy&url=https%3A%2F%2Fgithub.com%2FRsrchBoy%2FTest-Moose-More&title=RsrchBoy's%20CPAN%20Test-Moose-More&tags=%22RsrchBoy's%20Test-Moose-More%20in%20the%20CPAN%22"><img src="http://api.flattr.com/button/flattr-badge-large.png" /></a>
+
+=end html
+
+Please note B<I do not expect to be gittip'ed or flattr'ed for this work>,
+rather B<it is simply a very pleasant surprise>. I largely create and release
+works like this because I need them or I find it enjoyable; however, don't let
+that stop you if you feel like it ;)
+
+L<Flattr this|https://flattr.com/submit/auto?user_id=RsrchBoy&url=https%3A%2F%2Fgithub.com%2FRsrchBoy%2FTest-Moose-More&title=RsrchBoy's%20CPAN%20Test-Moose-More&tags=%22RsrchBoy's%20Test-Moose-More%20in%20the%20CPAN%22>,
+L<gittip me|https://www.gittip.com/RsrchBoy/>, or indulge my
+L<Amazon Wishlist|http://bit.ly/rsrchboys-wishlist>...  If you so desire.
 
 =head1 CONTRIBUTOR
 
