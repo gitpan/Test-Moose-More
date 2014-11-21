@@ -8,11 +8,9 @@
 #   The GNU Lesser General Public License, Version 2.1, February 1999
 #
 package Test::Moose::More;
-BEGIN {
-  $Test::Moose::More::AUTHORITY = 'cpan:RSRCHBOY';
-}
-# git description: 0.023-1-g4eafdbb
-$Test::Moose::More::VERSION = '0.024';
+our $AUTHORITY = 'cpan:RSRCHBOY';
+# git description: 0.024-2-gd989699
+$Test::Moose::More::VERSION = '0.025';
 
 # ABSTRACT: More tools for testing Moose packages
 
@@ -419,7 +417,7 @@ __END__
 
 =encoding UTF-8
 
-=for :stopwords Chris Weyl Karen Etheridge
+=for :stopwords Chris Weyl Chad Etheridge Granum Karen
 
 =for :stopwords Wishlist flattr flattr'ed gittip gittip'ed
 
@@ -429,7 +427,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.024 of Test::Moose::More - released May 14, 2014 as part of Test-Moose-More.
+This document describes version 0.025 of Test::Moose::More - released November 21, 2014 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
@@ -650,9 +648,21 @@ L<Flattr this|https://flattr.com/submit/auto?user_id=RsrchBoy&url=https%3A%2F%2F
 L<gittip me|https://www.gittip.com/RsrchBoy/>, or indulge my
 L<Amazon Wishlist|http://bit.ly/rsrchboys-wishlist>...  If you so desire.
 
-=head1 CONTRIBUTOR
+=head1 CONTRIBUTORS
+
+=for stopwords Chad Granum Karen Etheridge
+
+=over 4
+
+=item *
+
+Chad Granum <chad.granum@dreamhost.com>
+
+=item *
 
 Karen Etheridge <ether@cpan.org>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 

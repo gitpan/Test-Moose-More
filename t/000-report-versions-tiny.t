@@ -50,7 +50,7 @@ sub pmver {
 
 eval { $v .= pmver('Class::MOP','any version') };
 eval { $v .= pmver('Data::OptList','any version') };
-eval { $v .= pmver('ExtUtils::MakeMaker','6.30') };
+eval { $v .= pmver('ExtUtils::MakeMaker','any version') };
 eval { $v .= pmver('File::Spec','any version') };
 eval { $v .= pmver('IO::Handle','any version') };
 eval { $v .= pmver('IPC::Open3','any version') };

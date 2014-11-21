@@ -15,19 +15,19 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 55ac697642a18dd7d974736a3d06fd531aa82382 .travis.yml
-SHA1 5ec4baa1df47a94f09bed637ef1515b5bd6f67de Changes
+SHA1 81e071c97d7a20c9978256c36ef4707d9b276902 Changes
 SHA1 bf2d713ceca5b8ad3d680ed15baba1b89df7e149 LICENSE
-SHA1 76437b8eee45bb25682157d732f8134f65cffc97 MANIFEST
-SHA1 2d913435652995251b4cd1deb791c33e1521447d META.json
-SHA1 5fbe7dc9d752a0c40fe5d5de1f0bb9ef8efcb87a META.yml
-SHA1 134f8af699d44b45e7cec048825d4c6fd9d1fc3a Makefile.PL
-SHA1 76d460d7be0a76c847e87e2c145c425a7bb2b4c7 README
-SHA1 0fc4bb7d4a92b353508222d0e8cc6b111a145f5f cpanfile
+SHA1 3f9d391f6316181d13d35a77323a72cbc21b1a8f MANIFEST
+SHA1 ee82e523aa20eb584ce47367623b9d8b81d3ca08 META.json
+SHA1 18c1825981d61f8231a4b6378dc86da1f74b924b META.yml
+SHA1 85dc46d41f4077cf165df157dd8ba2389de98b98 Makefile.PL
+SHA1 ece9f3be540721de576095b64c3861bbeef3e878 README
+SHA1 b02bd5113e743fd6d74277800512ab5c33f7a7b2 cpanfile
 SHA1 b916e5e22dce319b385382dbb6694a1d4b7ac634 dist.ini
-SHA1 af5d42706b8633099afd9e2aff19f3ff04f4c7ab lib/Test/Moose/More.pm
+SHA1 d497215d49855d9a549f6f5546cd59a9423bb159 lib/Test/Moose/More.pm
 SHA1 c522c3928158e64bd97d34d20cbfe0b5305a7eb2 t/00-check-deps.t
-SHA1 9ce57d314ee9a0a6d23628a64c374c04d8c40fa4 t/00-compile.t
-SHA1 a62b6c5bfc74894e96d5a4bb08c375d0e84bbf52 t/000-report-versions-tiny.t
+SHA1 23f9e270e9add3ea88268fba9136c5bbaf7067a1 t/00-compile.t
+SHA1 a40930c2694e6b69e116d51fe9e5c37cb6bc4786 t/000-report-versions-tiny.t
 SHA1 f342105ead74ba486876bee67cbf3b11f22fff5e t/attribute/coerce.t
 SHA1 184cd396cdd45481169f5248992011f8ec90392d t/check_sugar.t
 SHA1 2b36ce7cc4fee13acdc6ce3748cfb57cd6a1dffb t/does_not_ok.t
@@ -41,26 +41,32 @@ SHA1 bfef3460be8109ac0ff0147c47af8a0842350135 t/is_role.t
 SHA1 4e15b688710f882cf42c2453db1b4b0827c64f4f t/meta_ok.t
 SHA1 9ce9fc8e942d7e32857562172190ea0932d4634b t/requires_method_ok.t
 SHA1 8417ad1ff196ed44bdb88862a00e7062af6087be t/validate_attribute.t
-SHA1 b14a9eaa41296de9df5b04f7928fa0397961438c t/validate_class.t
+SHA1 09fcc70b2d69d0530b53eeb05db5cc5bd1080301 t/validate_class.t
 SHA1 6bf2c6fdfbd0975dcd70747415e8a5e8cf8ce677 t/validate_role.t
-SHA1 d1e532a932feac9e0e042ac115e042f22b9e3ae3 xt/author/pod-spell.t
+SHA1 f09e96f46ac2364307142838d68b4f1953b5919d xt/author/eol.t
+SHA1 87bab5117fff24d2526105071a3664d0f93ac7bd xt/author/no-tabs.t
+SHA1 a352ca574b1f4e553cbcc7e42a2a5d505c93d135 xt/author/pod-spell.t
 SHA1 a7948d34cfaad400286ea5d5fa6206c4c7e2552c xt/release/consistent-version.t
-SHA1 b3915eaac65e18e6a048b34a4b873beccab326b4 xt/release/eol.t
 SHA1 9a21b3840753f6223630c9eda458e91085174ece xt/release/has-version.t
 SHA1 e91052db2912055e66889853bc5cb1f38db60665 xt/release/minimum-version.t
 SHA1 6431e7bd0b346bea9e6193dc6095dcbfdd1703d3 xt/release/no-smart-comments.t
-SHA1 4dbda4cdf08a2c2af413024d6678da9315ba237f xt/release/no-tabs.t
 SHA1 9b9533b39ea716aaccb533a2ae28478471f8383a xt/release/pod-coverage.t
 SHA1 fd53f1ea2ac5884abce47c17a77545c05e47bc2f xt/release/pod-linkcheck.t
 SHA1 93bc12febee2c87f89f27ee9eb929264b05fe34b xt/release/pod-syntax.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iQEcBAEBAgAGBQJTc7ztAAoJEOd5N1CvIgQkHfkH/12S5GT3yc0lFdQKod61il6z
-rD6AJ6G7k52koIgfe7Ik8Xbb3U8hIsO8NmfvdNfoGZxM/QTV/QYYGe2NU0kV1z4U
-lWq+ZslCSEdMuX5fIyPOMFyRcCls38AWOMWlhs7QIKRtd49I9DigdfIvE8ad/Zsm
-8AeE8F5YEJE1d580fqDyJq0Yr04944L0zFd6+YlKdzZ3z9JoCF581PtGbC+hPwME
-/PC/VlxABiswIy1mROT+f63rEbh0e6krSm0S9jClTJFCqEf7XuYzjex81t3ohD7c
-mgCKKw+OUm9VjRF4eBkAYBks+CccVCHVQwFDujIL+9eIr4eW+lZMMrNczwoX2xE=
-=KHBJ
+iQIcBAEBAgAGBQJUb5KhAAoJEJ/Rlq0N/NXWEywP/1qkrSwXX/iVx2ARcpsNrZ02
+tw6v4rA47ELG2psnOc9+89mzW9Veo3oC+r4N1rkqMINl3Wub6x2dTI/4K93t2laA
+Zv2ojwMhPbmQPPjwIREmZGr4R7hDQ8Xa6uq8TIbK9N69PibIMEbK4hbIJ1TmgssE
+jTRxDW1fWDBC29GQszSsPkqERLTs8PzzT7MHCP/15se2Qeav7U8QAzkCx74pOrNd
+BAnzycBePI2P0wAP4Ypkg0WzJ1BWyH//GOV2PuzITKOH+yegcFE6ApzUNDhMHqD0
+jQLgdd/oXI6Ulup4skRORh5WoJjbVTVSaez6tVcNJFzqHkUDUL+s1HWGHaeyMXd0
+Cny9GiGaI2oIrNLwDTKRKBnbT+HqKS2NdRNE8EPPKdL0BByR7wvEEUDvpNRs5/BO
+SdwmQwX2hn4nhxvANEWBKGYXn0EBCJCJTi5IaXn+0X4mkgkkr9v58Bp4D4SUGtz7
+iZRK+6ULpQpNTlwmhotyZAnWNKfpNPOP4R2l53LfRwbsc85wO5qxVvLHCK2q/pox
+JzxekR7ikcyKB3pwGnLOKGGRKlaFoEHu/YnCIG20QkGhKU6hn9VlnoDKJQayk10w
+NDZ1B8c4ePT0MKN7zPbk7AwjjIY6bTBea9a09CXwU7se0Ipel6pEXQSJo7DzCIAD
+wbLSkSpBerWU6pBYkbZt
+=zbPb
 -----END PGP SIGNATURE-----
