@@ -24,6 +24,7 @@ my @files = (
     't/meta_ok.t',
     't/requires_method_ok.t',
     't/validate_attribute.t',
+    't/validate_attribute/in_roles.t',
     't/validate_class.t',
     't/validate_role.t'
 );

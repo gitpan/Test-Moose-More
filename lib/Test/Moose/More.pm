@@ -8,9 +8,11 @@
 #   The GNU Lesser General Public License, Version 2.1, February 1999
 #
 package Test::Moose::More;
-our $AUTHORITY = 'cpan:RSRCHBOY';
-# git description: 0.024-2-gd989699
-$Test::Moose::More::VERSION = '0.025';
+BEGIN {
+  $Test::Moose::More::AUTHORITY = 'cpan:RSRCHBOY';
+}
+# git description: 0.025-10-gc99630d
+$Test::Moose::More::VERSION = '0.025_01';
 
 # ABSTRACT: More tools for testing Moose packages
 
@@ -110,6 +112,19 @@ sub does_not_ok {
 }
 
 
+# helper to dig for an attribute
+sub _find_attribute {
+    my ($thing, $attr_name) = @_;
+
+    my $meta = find_meta($thing);
+
+    # if $thing is a role, find_attribute_by_name() is not available to us
+    return $meta->isa('Moose::Meta::Role')
+        ? $meta->get_attribute($attr_name)
+        : $meta->find_attribute_by_name($attr_name)
+        ;
+}
+
 sub has_attribute_ok ($$;$) {
     my ($thing, $attr_name, $message) = @_;
 
@@ -117,13 +132,7 @@ sub has_attribute_ok ($$;$) {
     my $thing_name = $meta->name;
     $message     ||= "$thing_name has an attribute named $attr_name";
 
-    return $tb->ok(($meta->has_attribute($attr_name) ? 1 : 0), $message)
-        if $meta->isa('Moose::Meta::Role');
-
-    return $tb->ok(1, $message)
-        if $meta->find_attribute_by_name($attr_name);
-
-    return $tb->ok(0, $message);
+    return $tb->ok(!!_find_attribute($thing => $attr_name), $message);
 }
 
 
@@ -248,7 +257,7 @@ sub validate_thing {
                     if (find_meta($thing)->isa('Moose::Meta::Role'));
 
                 local $THING_NAME = "${thing}'s attribute $name";
-                $tb->subtest("[subtest] checking $THING_NAME" => sub {
+                $tb->subtest("checking $THING_NAME" => sub {
                     _validate_attribute($att, %$opts);
                 });
             }
@@ -289,9 +298,8 @@ sub validate_attribute {
     my ($thing, $name, %opts) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    has_attribute_ok($thing, $name);
-    my $att = find_meta($thing)->get_attribute($name)
-        or return;
+    return unless has_attribute_ok($thing, $name);
+    my $att = _find_attribute($thing => $name);
 
     return _validate_attribute($att, %opts);
 }
@@ -318,15 +326,47 @@ sub attribute_options_ok {
     my ($thing, $name, %opts) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    has_attribute_ok($thing, $name);
-    my $att = find_meta($thing)->get_attribute($name)
-        or return;
+    return unless has_attribute_ok($thing, $name);
+    my $att = _find_attribute($thing => $name);
 
     return _attribute_options_ok($att, %opts);
 }
 
 sub _attribute_options_ok {
     my ($att, %opts) = @_;
+
+    goto \&_role_attribute_options_ok
+        if $att->isa('Moose::Meta::Role::Attribute');
+    goto \&_class_attribute_options_ok;
+}
+
+sub _role_attribute_options_ok {
+    my ($att, %opts) = @_;
+
+    local $Test::Builder::Level = $Test::Builder::Level + 1;
+    my $name                    = $att->name;
+    my $thing_name              = _thing_name($name, $att);
+
+    # this much works, at least
+    if (exists $opts{coerce}) {
+
+        delete $opts{coerce}
+            ? ok( $att->should_coerce, "$thing_name should coerce")
+            : ok(!$att->should_coerce, "$thing_name should not coerce")
+            ;
+    }
+
+    ### for now, skip role attributes: blessed $att
+    return $tb->skip('cannot yet test role attribute layouts')
+        if keys %opts;
+}
+
+sub _class_attribute_options_ok {
+    my ($att, %opts) = @_;
+
+    ### for now, skip role attributes: blessed $att
+    return $tb->skip('cannot yet test role attribute layouts')
+        if $att->isa('Moose::Meta::Role::Attribute');
 
     my @check_opts =
         qw{ reader writer accessor predicate default builder clearer };
@@ -343,10 +383,15 @@ sub _attribute_options_ok {
         $opts{reader}   = $name if $is eq 'ro' && ! exists $opts{reader};
     }
 
+    # helper to check an attribute option we expect to be a string, !exist, or
+    # undef
     my $check = sub {
         my $property = shift || $_;
         my $value    = delete $opts{$property};
         my $has      = "has_$property";
+
+        # deeper and deeper down the rabbit hole...
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
 
         defined $value
             ? ok($att->$has,  "$thing_name has a $property")
@@ -427,7 +472,7 @@ Test::Moose::More - More tools for testing Moose packages
 
 =head1 VERSION
 
-This document describes version 0.025 of Test::Moose::More - released November 21, 2014 as part of Test-Moose-More.
+This document describes version 0.025_01 of Test::Moose::More - released December 23, 2014 as part of Test-Moose-More.
 
 =head1 SYNOPSIS
 
